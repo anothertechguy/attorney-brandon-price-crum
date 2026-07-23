@@ -22,7 +22,10 @@ export function Section({
   return (
     <section
       className={cn(
-        "py-24 lg:py-32",
+        // Two adjacent sections each contribute their own padding, so this is
+        // half the visible gap, not all of it. Kept deliberately tighter than
+        // it looks in isolation.
+        "py-14 lg:py-20",
         tone === "paper" && "bg-paper",
         tone === "tint" && "bg-tint-1",
         tone === "ink" && "bg-ink text-white",

@@ -45,66 +45,56 @@ function HomePage() {
 }
 
 /**
- * The portrait is displayed in its native 2:3 crop rather than being forced
- * into a square, and the Top 40 Under 40 credential sits in its own card
- * beneath the frame — the previous build floated it over the photo, which
- * covered both his face and the awards on the desk behind him.
+ * The portrait is displayed in its native crop rather than being forced into a
+ * square, and the Top 40 Under 40 credential sits in its own card beneath the
+ * frame — the previous build floated it over the photo, which covered both his
+ * face and the awards on the desk behind him.
+ *
+ * On phones the copy is split around the portrait — headline above, everything
+ * else below — so he is on screen without scrolling. Stacking the whole text
+ * column first pushed the photograph roughly a full viewport down, which on a
+ * personal brand site buries the one thing a visitor came to see.
+ *
+ * DOM order is headline → portrait → supporting copy, which is also the correct
+ * reading order on mobile; the desktop two-column layout is rebuilt with
+ * explicit grid placement rather than by reordering.
  */
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-28">
+    <section className="relative overflow-hidden pt-28 pb-14 sm:pt-32 lg:pt-40 lg:pb-20">
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 -z-10 h-[70%] bg-gradient-to-b from-tint-2 via-tint-1 to-background"
       />
 
       <Container>
-        <div className="grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
-          <div className="animate-rise">
+        {/*
+          On desktop the second row takes the slack (auto_1fr) and the copy
+          pins to its top. Leaving both rows auto lets the tall portrait stretch
+          them and open a gap between the headline and the paragraph.
+        */}
+        <div className="flex flex-col gap-9 lg:grid lg:grid-cols-[1.08fr_0.92fr] lg:grid-rows-[auto_1fr] lg:gap-x-20 lg:gap-y-0">
+          {/* Headline — above the portrait on every breakpoint. */}
+          <div className="animate-rise lg:col-start-1 lg:row-start-1">
             <p className="eyebrow">
               {site.firmShort} <span className="mx-2 text-slate-4">/</span> Alabama &amp; Georgia
             </p>
 
-            <h1 className="display mt-6 max-w-[15ch] text-[clamp(2.25rem,5vw,3.75rem)] text-ink">
+            <h1 className="display mt-5 max-w-[15ch] text-[clamp(2.25rem,5vw,3.75rem)] text-ink lg:mt-6">
               Standing in the gap between a wrong and{" "}
               <em className="text-brand not-italic">a remedy.</em>
             </h1>
-
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
-              Brandon Price-Crum is a trial attorney representing people and families in personal
-              injury, wrongful death, and civil rights matters — the cases where someone is up
-              against an institution with far more resources than they have.
-            </p>
-
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Link to="/contact" className="btn btn-primary">
-                Request a consultation
-                <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-              <Link to="/about" className="btn btn-outline">
-                About Brandon
-              </Link>
-            </div>
-
-            <dl className="mt-14 grid max-w-xl grid-cols-2 gap-x-8 gap-y-7 sm:grid-cols-4">
-              {factStrip.map((f) => (
-                <div key={f.v} className="border-t border-slate-5 pt-4">
-                  <dt className="display text-2xl text-ink">{f.k}</dt>
-                  <dd className="label-xs mt-2 text-slate-2">{f.v}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
-          {/* Portrait column — image at native ratio, credential card below it. */}
-          <div className="lg:pl-6">
+          {/* Portrait — sits between the two blocks of copy on phones. */}
+          <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center lg:pl-6">
             <div className="photo-bloom">
-              <div className="frame aspect-[2/3] w-full">
+              <div className="frame aspect-[4/5] w-full sm:aspect-[3/4] lg:aspect-[2/3]">
                 <Photo
                   id="blue-standing"
                   priority
                   sizes="(min-width: 1024px) 44vw, 100vw"
-                  position="50% 20%"
+                  position="50% 18%"
                 />
               </div>
             </div>
@@ -126,6 +116,34 @@ function Hero() {
                 2022&ndash;2026
               </span>
             </div>
+          </div>
+
+          {/* Supporting copy, actions, and credentials. */}
+          <div className="lg:col-start-1 lg:row-start-2 lg:self-start">
+            <p className="max-w-xl text-lg leading-relaxed text-muted lg:mt-8">
+              Brandon Price-Crum is a trial attorney representing people and families in personal
+              injury, wrongful death, and civil rights matters — the cases where someone is up
+              against an institution with far more resources than they have.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3 lg:mt-10">
+              <Link to="/contact" className="btn btn-primary">
+                Request a consultation
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link to="/about" className="btn btn-outline">
+                About Brandon
+              </Link>
+            </div>
+
+            <dl className="mt-12 grid max-w-xl grid-cols-2 gap-x-8 gap-y-7 sm:grid-cols-4 lg:mt-14">
+              {factStrip.map((f) => (
+                <div key={f.v} className="border-t border-slate-5 pt-4">
+                  <dt className="display text-2xl text-ink">{f.k}</dt>
+                  <dd className="label-xs mt-2 text-slate-2">{f.v}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </Container>
@@ -205,7 +223,7 @@ function Introduction() {
  */
 function Thesis() {
   return (
-    <Section tone="paper" className="relative overflow-hidden border-y border-line py-20 lg:py-28">
+    <Section tone="paper" className="relative overflow-hidden border-y border-line py-14 lg:py-20">
       {/* Atmosphere: an outsized quote mark and a soft brand wash behind the text. */}
       <span
         aria-hidden
@@ -251,7 +269,7 @@ function PracticeGrid() {
           lede="Matters handled through Serious Injury Law Group across Alabama and Georgia."
         />
 
-        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {practiceAreas.map((area, i) => (
             <article key={area.id} className="card-raised group p-8 pt-9">
               <span aria-hidden className="ghost-num">
@@ -270,7 +288,7 @@ function PracticeGrid() {
 
         <Link
           to="/practice"
-          className="mt-12 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-brand"
+          className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-brand"
         >
           More on how a case works
           <ArrowUpRight className="h-4 w-4" aria-hidden />
@@ -287,10 +305,10 @@ function PracticeGrid() {
  */
 function PressBar() {
   return (
-    <Section className="py-20 lg:py-24">
+    <Section tone="paper" className="border-y border-line py-10 lg:py-12">
       <Container>
         <p className="eyebrow text-center">As featured in</p>
-        <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+        <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
           {pressOutlets.map((outlet) => (
             <li key={outlet.name} className="text-center">
               <span className="display text-base text-slate-1 lg:text-lg">{outlet.name}</span>
@@ -320,7 +338,7 @@ function FeaturedMedia() {
           </Link>
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2">
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
           {mediaFeatures.map((item) => (
             <article key={item.title} className="group">
               <a

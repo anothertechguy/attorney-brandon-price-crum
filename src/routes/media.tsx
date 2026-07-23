@@ -38,7 +38,7 @@ function MediaPage() {
 
 function MediaHero() {
   return (
-    <section className="relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-24">
+    <section className="relative overflow-hidden pt-28 pb-14 sm:pt-32 lg:pt-40 lg:pb-20">
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 -z-10 h-[65%] bg-gradient-to-b from-tint-2 to-background"
@@ -83,10 +83,10 @@ function MediaHero() {
  */
 function OutletWall() {
   return (
-    <Section className="border-y border-line py-20 lg:py-24" tone="paper">
+    <Section className="border-y border-line py-12 lg:py-16" tone="paper">
       <Container>
         <p className="eyebrow text-center">Featured by</p>
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
+        <ul className="mt-10 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
           {pressOutlets.map((outlet) => (
             <li
               key={outlet.name}
@@ -114,7 +114,7 @@ function Coverage() {
           lede="Every item below links to the original publication."
         />
 
-        <div className="mt-16 space-y-16">
+        <div className="mt-12 space-y-14">
           {mediaFeatures.map((item, i) => (
             <article
               key={item.title}
@@ -164,7 +164,7 @@ function Coverage() {
           ))}
         </div>
 
-        <PullQuote quote={quotes.worstDay} className="mt-24 max-w-4xl" />
+        <PullQuote quote={quotes.worstDay} className="mt-16 max-w-4xl" />
       </Container>
     </Section>
   );

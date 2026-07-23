@@ -34,7 +34,7 @@ type Status =
 function ContactPage() {
   return (
     <>
-      <section className="relative overflow-hidden pt-36 pb-24 lg:pt-44 lg:pb-28">
+      <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 lg:pt-40 lg:pb-20">
         <div
           aria-hidden
           className="absolute inset-x-0 top-0 -z-10 h-[60%] bg-gradient-to-b from-tint-2 to-background"
@@ -100,7 +100,7 @@ function ContactPage() {
         </Container>
       </section>
 
-      <Section tone="tint" className="border-t border-line py-16 lg:py-20">
+      <Section tone="tint" className="border-t border-line py-12 lg:py-14">
         <Container>
           <p className="mx-auto max-w-4xl text-center text-sm leading-relaxed text-slate-2">
             Submitting this form does not create an attorney-client relationship, and no such

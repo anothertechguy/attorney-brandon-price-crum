@@ -67,7 +67,7 @@ function PracticePage() {
 
 function PracticeHero() {
   return (
-    <section className="relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-24">
+    <section className="relative overflow-hidden pt-28 pb-14 sm:pt-32 lg:pt-40 lg:pb-20">
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 -z-10 h-[65%] bg-gradient-to-b from-tint-2 to-background"
@@ -164,7 +164,7 @@ function FeeNote() {
           lede="The practical barriers matter as much as the legal ones. These are the things that decide whether someone can bring a claim at all."
         />
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-card border border-line bg-line lg:grid-cols-3">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line lg:grid-cols-3">
           {accessPoints.map((point) => (
             <div key={point.title} className="bg-paper p-8">
               <h3 className="display text-2xl leading-tight text-ink">{point.title}</h3>

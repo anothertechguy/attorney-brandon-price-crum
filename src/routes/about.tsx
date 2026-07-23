@@ -52,7 +52,7 @@ function AboutPage() {
 
 function AboutHero() {
   return (
-    <section className="relative overflow-hidden pt-36 pb-20 lg:pt-44 lg:pb-24">
+    <section className="relative overflow-hidden pt-28 pb-14 sm:pt-32 lg:pt-40 lg:pb-20">
       <div
         aria-hidden
         className="absolute inset-x-0 top-0 -z-10 h-[65%] bg-gradient-to-b from-slate-6/60 to-background"
@@ -212,7 +212,7 @@ function Legacy() {
 
 function Endorsement() {
   return (
-    <Section tone="ink" className="py-24 lg:py-28">
+    <Section tone="ink" className="py-16 lg:py-20">
       <Container>
         <figure className="mx-auto max-w-4xl text-center">
           <blockquote className="quote text-[clamp(1.375rem,2.6vw,2.125rem)] text-white">
@@ -253,7 +253,7 @@ function CredentialTable() {
       <Container>
         <SectionHead eyebrow="Credentials" title="On the record" />
 
-        <div className="mt-14 space-y-14">
+        <div className="mt-12 space-y-12">
           {groups.map((group) => (
             <div
               key={group.heading}
