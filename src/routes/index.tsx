@@ -162,8 +162,10 @@ function Introduction() {
     <Section>
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div className="frame aspect-[3/2]">
-            <Photo id="desk-standing" sizes="(min-width: 1024px) 46vw, 100vw" />
+          <div className="photo-stage">
+            <div className="frame aspect-[3/2]">
+              <Photo id="desk-standing" sizes="(min-width: 1024px) 46vw, 100vw" />
+            </div>
           </div>
 
           <div>
@@ -201,8 +203,20 @@ function Introduction() {
  */
 function Thesis() {
   return (
-    <Section tone="paper" className="border-y border-line py-20 lg:py-28">
-      <Container>
+    <Section tone="paper" className="relative overflow-hidden border-y border-line py-20 lg:py-28">
+      {/* Atmosphere: an outsized quote mark and a soft brand wash behind the text. */}
+      <span
+        aria-hidden
+        className="display pointer-events-none absolute -top-[0.35em] left-1/2 -translate-x-1/2 text-[22rem] leading-none text-brand opacity-[0.055] select-none"
+      >
+        &ldquo;
+      </span>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-1/2 -z-0 h-[420px] -translate-y-1/2 bg-[radial-gradient(50%_60%_at_50%_50%,var(--color-tint-2),transparent_70%)] opacity-70"
+      />
+
+      <Container className="relative">
         <figure className="mx-auto max-w-4xl text-center">
           <blockquote className="quote text-[clamp(1.25rem,2.4vw,1.9rem)] text-ink">
             &ldquo;{quotes.gap.text}&rdquo;
@@ -220,26 +234,35 @@ function Thesis() {
 
 function PracticeGrid() {
   return (
-    <Section tone="tint" className="border-y border-line">
-      <Container>
+    <Section tone="tint" className="relative overflow-hidden border-y border-line">
+      <span
+        aria-hidden
+        className="ghost-word -top-[0.18em] -right-[0.06em] text-[clamp(7rem,15vw,14rem)]"
+      >
+        Practice
+      </span>
+
+      <Container className="relative">
         <SectionHead
           eyebrow="Practice"
           title="Where he can help"
           lede="Matters handled through Serious Injury Law Group across Alabama and Georgia."
         />
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {practiceAreas.map((area) => (
-            <div key={area.id} className="group bg-paper p-8 transition-colors hover:bg-tint-1">
-              <div className="flex items-baseline justify-between gap-4">
-                <h3 className="display text-2xl text-ink">{area.title}</h3>
-                <span
-                  aria-hidden
-                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-slate-5 transition-colors group-hover:bg-brand"
-                />
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {practiceAreas.map((area, i) => (
+            <article key={area.id} className="card-raised group p-8 pt-9">
+              <span aria-hidden className="ghost-num">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              <div className="relative">
+                <h3 className="display text-2xl text-ink transition-colors group-hover:text-brand-deep">
+                  {area.title}
+                </h3>
+                <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">{area.blurb}</p>
               </div>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">{area.blurb}</p>
-            </div>
+            </article>
           ))}
         </div>
 
@@ -354,8 +377,10 @@ function ClosingCta() {
             </div>
           </div>
 
-          <div className="frame aspect-[4/5] lg:ml-auto lg:max-w-md">
-            <Photo id="desk-seated" sizes="(min-width: 1024px) 38vw, 100vw" position="50% 35%" />
+          <div className="photo-stage lg:ml-auto lg:max-w-md">
+            <div className="frame aspect-[4/5]">
+              <Photo id="desk-seated" sizes="(min-width: 1024px) 38vw, 100vw" position="50% 35%" />
+            </div>
           </div>
         </div>
       </Container>

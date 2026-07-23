@@ -65,8 +65,10 @@ function MediaHero() {
             </div>
           </div>
 
-          <div className="frame aspect-[3/4] lg:ml-auto lg:max-w-sm">
-            <Photo id="navy-headshot" priority sizes="(min-width: 1024px) 34vw, 100vw" />
+          <div className="photo-stage lg:ml-auto lg:max-w-sm">
+            <div className="frame aspect-[3/4]">
+              <Photo id="navy-headshot" priority sizes="(min-width: 1024px) 34vw, 100vw" />
+            </div>
           </div>
         </div>
       </Container>

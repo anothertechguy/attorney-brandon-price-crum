@@ -85,8 +85,10 @@ function PracticeHero() {
             </p>
           </div>
 
-          <div className="frame aspect-[3/2] lg:ml-auto">
-            <Photo id="desk-seated" priority sizes="(min-width: 1024px) 38vw, 100vw" />
+          <div className="photo-stage lg:ml-auto">
+            <div className="frame aspect-[3/2]">
+              <Photo id="desk-seated" priority sizes="(min-width: 1024px) 38vw, 100vw" />
+            </div>
           </div>
         </div>
       </Container>
@@ -98,14 +100,19 @@ function AreaList() {
   return (
     <Section>
       <Container>
-        <div className="space-y-0 border-t border-line">
+        <div className="border-t border-line">
           {practiceAreas.map((area, i) => (
             <div
               key={area.id}
-              className="group grid gap-4 border-b border-line py-10 lg:grid-cols-[5rem_1fr_1.1fr] lg:gap-10"
+              className="row-raised group grid gap-4 border-b border-line px-5 py-10 lg:grid-cols-[6rem_1fr_1.1fr] lg:gap-10 lg:px-8"
             >
-              <span className="label-xs pt-2 text-slate-4">{String(i + 1).padStart(2, "0")}</span>
-              <h2 className="display text-[clamp(1.5rem,2.6vw,2.125rem)] text-ink transition-colors group-hover:text-brand">
+              <span
+                aria-hidden
+                className="display text-4xl leading-none text-slate-5 transition-colors duration-500 group-hover:text-brand lg:text-5xl"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h2 className="display text-[clamp(1.5rem,2.6vw,2.125rem)] text-ink transition-colors duration-500 group-hover:text-brand-deep">
                 {area.title}
               </h2>
               <p className="text-lg leading-relaxed text-muted lg:pt-2">{area.blurb}</p>

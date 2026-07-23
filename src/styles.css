@@ -195,6 +195,187 @@
     0 18px 40px -24px oklch(0.216 0.031 243 / 0.35);
 }
 
+/**
+ * Wraps a `.frame` and sets it on a stage: a tinted panel offset behind the
+ * photograph plus a hairline outline offset the other way. Two flat planes at
+ * different depths read as dimension without resorting to a drop shadow big
+ * enough to look like a sticker.
+ */
+@utility photo-stage {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    translate: 1.5rem 1.5rem;
+    border-radius: var(--radius-card);
+    background: linear-gradient(150deg, var(--color-brand), var(--color-brand-deep));
+    opacity: 0.16;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    translate: -0.75rem -0.75rem;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-brand);
+    opacity: 0.22;
+  }
+
+  & > .frame {
+    box-shadow:
+      0 2px 4px oklch(0.216 0.031 243 / 0.08),
+      0 30px 60px -28px oklch(0.34 0.09 245 / 0.5);
+  }
+}
+
+/**
+ * Oversized numeral parked behind card content. Sits under the text at low
+ * opacity so it registers as texture, not as something to read.
+ */
+@utility ghost-num {
+  position: absolute;
+  top: -0.28em;
+  right: -0.04em;
+  z-index: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 8rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--color-brand);
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+
+/**
+ * Dimensional card. Gradient surface so it is not a flat fill, layered shadow
+ * for depth, and an accent rule that wipes across the top edge on hover.
+ */
+@utility card-raised {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background:
+    radial-gradient(130% 100% at 100% 0%, oklch(0.94 0.045 231 / 0.75), transparent 62%),
+    linear-gradient(165deg, oklch(1 0 0), oklch(0.975 0.01 236));
+  box-shadow:
+    0 1px 2px oklch(0.216 0.031 243 / 0.06),
+    0 10px 20px -14px oklch(0.216 0.031 243 / 0.3),
+    0 26px 48px -30px oklch(0.34 0.09 245 / 0.42);
+  transition:
+    transform 0.5s var(--ease-out-soft),
+    box-shadow 0.5s var(--ease-out-soft),
+    border-color 0.5s var(--ease-out-soft);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-brand), var(--color-brand-bright));
+    scale: 0 1;
+    transform-origin: left;
+    transition: scale 0.55s var(--ease-out-soft);
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: oklch(0.836 0.022 235.1);
+    box-shadow:
+      0 2px 6px oklch(0.216 0.031 243 / 0.07),
+      0 36px 64px -30px oklch(0.34 0.09 245 / 0.45);
+  }
+
+  &:hover::before {
+    scale: 1 1;
+  }
+}
+
+/**
+ * Editorial list row: ghosted index numeral, accent wipe, and a lift on hover.
+ * Used where a plain bordered list would otherwise flatline.
+ */
+@utility row-raised {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--radius-card);
+  transition:
+    box-shadow 0.45s var(--ease-out-soft),
+    transform 0.45s var(--ease-out-soft);
+
+  /* Accent bar, wipes down from the top edge. */
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12%;
+    bottom: 12%;
+    z-index: 1;
+    width: 3px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--color-brand), var(--color-brand-deep));
+    scale: 1 0;
+    transform-origin: top;
+    transition: scale 0.5s var(--ease-out-soft);
+  }
+
+  /*
+   * Background wash lives on its own layer and fades via opacity —
+   * background-image itself cannot be transitioned between none and a gradient.
+   */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: var(--radius-card);
+    background: linear-gradient(90deg, oklch(0.955 0.035 230 / 0.95), transparent 72%);
+    opacity: 0;
+    transition: opacity 0.45s var(--ease-out-soft);
+  }
+
+  &:hover {
+    box-shadow: 0 24px 50px -34px oklch(0.34 0.09 245 / 0.5);
+    transform: translateX(6px);
+  }
+
+  &:hover::before {
+    scale: 1 1;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+/**
+ * Faint oversized wordmark for section backgrounds. Purely atmospheric, so it
+ * is hidden from assistive tech at the call site.
+ */
+@utility ghost-word {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: var(--color-brand);
+  opacity: 0.045;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
 /* -------------------------------------------------------------- buttons ---- */
 
 @utility btn {
