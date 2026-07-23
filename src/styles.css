@@ -552,29 +552,27 @@
 }
 
 /*
- * Scroll reveal. Scoped to [data-js] on the root, set by an inline script only
- * when IntersectionObserver exists, so a browser that cannot run the observer
- * never ends up with permanently invisible content.
- *
- * --reveal-delay staggers members of a grid; see the card lists.
+ * Scroll reveal — visible by default, hidden only once the hook arms an
+ * element. Content is never hidden unless JS is alive to reveal it again, so
+ * the worst-case failure is a missing animation, not a blank section. See
+ * use-reveal.ts. --reveal-delay staggers members of a grid.
  */
 @layer base {
-  [data-js] [data-reveal] {
+  [data-reveal][data-reveal-armed] {
     opacity: 0;
     transform: translateY(18px);
-  }
-
-  [data-js] [data-reveal][data-revealed] {
-    opacity: 1;
-    transform: none;
     transition:
       opacity 0.7s var(--ease-out-soft) var(--reveal-delay, 0ms),
       transform 0.7s var(--ease-out-soft) var(--reveal-delay, 0ms);
   }
 
-  /* Belt and braces: the hook also bails out, but never leave content hidden. */
+  [data-reveal][data-reveal-armed][data-reveal-shown] {
+    opacity: 1;
+    transform: none;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    [data-js] [data-reveal] {
+    [data-reveal][data-reveal-armed] {
       opacity: 1;
       transform: none;
       transition: none;

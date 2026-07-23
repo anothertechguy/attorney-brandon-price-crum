@@ -1,48 +1,109 @@
 import { useEffect } from "react";
 import { useRouterState } from "@tanstack/react-router";
 
+const ARMED = "data-reveal-armed";
+const SHOWN = "data-reveal-shown";
+
 /**
- * Reveals `[data-reveal]` elements as they enter the viewport.
+ * Fades `[data-reveal]` elements up as they scroll into view.
  *
- * Progressive enhancement: the hidden state is scoped to `[data-js]` on the
- * root element, which is only set by an inline script when IntersectionObserver
- * exists. Without JS the markup renders exactly as prerendered — important
- * here, because every page is static HTML that search engines read directly.
+ * The risk is inverted on purpose. Content is fully visible by default — the
+ * CSS only hides an element once *this hook* adds `data-reveal-armed` to it,
+ * and it only arms elements that are currently below the fold. JS being alive
+ * is therefore a precondition for anything ever being hidden. If the hook never
+ * runs, throws, or the browser lacks the APIs, every element just stays visible
+ * and un-animated. The failure mode is "no animation", never the "blank section
+ * until you refresh" that hiding-by-default caused.
  *
- * Elements are unobserved once shown, so content never animates twice or
- * disappears on scroll-back.
+ * Three independent reveal paths, because a stranded section is the worst
+ * outcome on a marketing site and this is worth over-engineering:
+ *   1. IntersectionObserver — the normal, efficient path.
+ *   2. A throttled scroll/resize check — catches anything the observer misses.
+ *   3. A one-shot safety timer — reveals whatever is left after 2.5s, no matter
+ *      what, so nothing can stay hidden indefinitely.
+ *
+ * A MutationObserver re-arms elements that mount after this runs, which is the
+ * normal case on a client-side navigation: route chunks load async, so the new
+ * page's DOM usually is not present yet when the effect first fires.
  */
 export function useReveal() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
+    const hasIO = typeof IntersectionObserver !== "undefined";
+    const hasMO = typeof MutationObserver !== "undefined";
+    if (!hasMO) return; // Without it, late-mounting content could strand — don't hide anything.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    // Reduced motion: reveal everything immediately and skip the observer.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
-        el.dataset.revealed = "";
-      });
-      return;
+    const show = (el: Element) => el.setAttribute(SHOWN, "");
+    const inView = (el: Element) => {
+      const r = el.getBoundingClientRect();
+      return r.top < window.innerHeight * 0.92 && r.bottom > 0;
+    };
+
+    let io: IntersectionObserver | null = null;
+    if (hasIO) {
+      try {
+        io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                show(e.target);
+                io?.unobserve(e.target);
+              }
+            }
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0 },
+        );
+      } catch {
+        io = null;
+      }
     }
 
-    const targets = document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-revealed])");
-    if (targets.length === 0) return;
+    /** Arm below-fold elements; reveal in-view ones immediately (no load flash). */
+    const arm = () => {
+      document.querySelectorAll<HTMLElement>(`[data-reveal]:not([${ARMED}])`).forEach((el) => {
+        el.setAttribute(ARMED, "");
+        if (inView(el)) show(el);
+        else io?.observe(el);
+      });
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          (entry.target as HTMLElement).dataset.revealed = "";
-          observer.unobserve(entry.target);
-        }
-      },
-      // Fire slightly before the element is fully in view so the motion has
-      // finished by the time it reaches comfortable reading position.
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
-    );
+    // Fallback sweep: reveal any armed-but-hidden element now in view. Covers
+    // the case where the observer does not fire (some embedded webviews).
+    const sweep = () => {
+      document
+        .querySelectorAll<HTMLElement>(`[${ARMED}]:not([${SHOWN}])`)
+        .forEach((el) => inView(el) && show(el));
+    };
 
-    targets.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        sweep();
+        ticking = false;
+      });
+    };
+
+    arm();
+    const mutations = new MutationObserver(arm);
+    mutations.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+
+    // Last-resort safety net: nothing stays hidden past this, ever.
+    const failsafe = window.setTimeout(() => {
+      document.querySelectorAll(`[${ARMED}]:not([${SHOWN}])`).forEach(show);
+    }, 2500);
+
+    return () => {
+      io?.disconnect();
+      mutations.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.clearTimeout(failsafe);
+    };
   }, [pathname]);
 }

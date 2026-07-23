@@ -102,16 +102,6 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        {/*
-          Gates the scroll-reveal styles. Runs before first paint and only when
-          IntersectionObserver exists, so the prerendered HTML is never hidden
-          from a browser that cannot un-hide it.
-        */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `if('IntersectionObserver' in window)document.documentElement.setAttribute('data-js','')`,
-          }}
-        />
         <HeadContent />
       </head>
       <body>
