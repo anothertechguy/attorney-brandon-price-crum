@@ -551,6 +551,37 @@
   animation: rise 0.9s var(--ease-out-soft) both;
 }
 
+/*
+ * Scroll reveal. Scoped to [data-js] on the root, set by an inline script only
+ * when IntersectionObserver exists, so a browser that cannot run the observer
+ * never ends up with permanently invisible content.
+ *
+ * --reveal-delay staggers members of a grid; see the card lists.
+ */
+@layer base {
+  [data-js] [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  [data-js] [data-reveal][data-revealed] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.7s var(--ease-out-soft) var(--reveal-delay, 0ms),
+      transform 0.7s var(--ease-out-soft) var(--reveal-delay, 0ms);
+  }
+
+  /* Belt and braces: the hook also bails out, but never leave content hidden. */
+  @media (prefers-reduced-motion: reduce) {
+    [data-js] [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);

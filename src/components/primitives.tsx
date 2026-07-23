@@ -51,8 +51,12 @@ export function Accent({ children }: { children: ReactNode }) {
 
 /**
  * Oversized wordmark parked behind a section as texture. Absolutely positioned
- * and always aria-hidden — it is atmosphere, not content, and the host section
- * needs `relative overflow-hidden` so it cannot widen the page.
+ * and always aria-hidden — it is atmosphere, not content.
+ *
+ * The host section needs `relative overflow-clip` so a long nowrap word cannot
+ * widen the page. Use clip, not hidden: `overflow: hidden` establishes a scroll
+ * container and silently kills `position: sticky` on any descendant, which is
+ * exactly what the two-column sections rely on.
  */
 export function GhostWord({
   children,
@@ -92,6 +96,7 @@ export function SectionHead({
 }) {
   return (
     <div
+      data-reveal
       className={cn(align === "center" && "mx-auto max-w-3xl text-center", "max-w-3xl", className)}
     >
       {eyebrow && (
@@ -157,7 +162,7 @@ export function PullQuote({
   className?: string;
 }) {
   return (
-    <figure className={cn("rule-accent", className)}>
+    <figure data-reveal className={cn("rule-accent", className)}>
       <blockquote
         className={cn(
           "quote text-[clamp(1.25rem,2.1vw,1.75rem)]",

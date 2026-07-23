@@ -11,6 +11,7 @@ import type { ReactNode } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { barAdmissions, contact, credentials, site, socials } from "@/content/site";
 import { asset, canonical } from "@/lib/urls";
+import { useReveal } from "@/lib/use-reveal";
 import appCss from "@/styles.css?url";
 
 const ogImage = canonical("/photos/navy-headshot-1080.jpg");
@@ -101,6 +102,16 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/*
+          Gates the scroll-reveal styles. Runs before first paint and only when
+          IntersectionObserver exists, so the prerendered HTML is never hidden
+          from a browser that cannot un-hide it.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if('IntersectionObserver' in window)document.documentElement.setAttribute('data-js','')`,
+          }}
+        />
         <HeadContent />
       </head>
       <body>
@@ -112,6 +123,8 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
+  useReveal();
+
   return (
     <>
       <a

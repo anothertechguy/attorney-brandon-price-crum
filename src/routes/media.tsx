@@ -113,7 +113,7 @@ function OutletWall() {
 
 function Coverage() {
   return (
-    <Section className="relative overflow-hidden">
+    <Section className="relative overflow-clip">
       <GhostWord className="top-[-0.16em] right-[-0.05em] text-[clamp(6rem,13vw,12rem)]">
         Coverage
       </GhostWord>
@@ -133,6 +133,7 @@ function Coverage() {
           {mediaFeatures.map((item, i) => (
             <article
               key={item.title}
+              data-reveal
               className={`group grid gap-8 lg:grid-cols-2 lg:gap-16 ${
                 // Only the photo column flips; matching every child would cancel out.
                 i % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
@@ -187,7 +188,7 @@ function Coverage() {
 
 function PressKit() {
   return (
-    <Section tone="ink" className="relative overflow-hidden">
+    <Section tone="ink" className="relative overflow-clip">
       <GhostWord
         tone="light"
         className="bottom-[-0.2em] left-[-0.04em] text-[clamp(6rem,13vw,12rem)]"

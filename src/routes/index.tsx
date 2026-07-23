@@ -186,14 +186,14 @@ function CredentialMarquee() {
  */
 function Introduction() {
   return (
-    <Section className="relative overflow-hidden">
+    <Section className="relative overflow-clip">
       <GhostWord className="top-[-0.16em] right-[-0.05em] text-[clamp(6rem,13vw,12rem)]">
         Approach
       </GhostWord>
 
       <Container className="relative">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div className="photo-stage">
+          <div data-reveal className="photo-stage">
             <div className="frame aspect-[3/2]">
               <Photo id="desk-standing" sizes="(min-width: 1024px) 46vw, 100vw" />
             </div>
@@ -234,7 +234,7 @@ function Introduction() {
  */
 function Thesis() {
   return (
-    <Section tone="paper" className="relative overflow-hidden border-y border-line py-14 lg:py-20">
+    <Section tone="paper" className="relative overflow-clip border-y border-line py-14 lg:py-20">
       {/* Atmosphere: an outsized quote mark and a soft brand wash behind the text. */}
       <span
         aria-hidden
@@ -265,7 +265,7 @@ function Thesis() {
 
 function PracticeGrid() {
   return (
-    <Section tone="tint" className="relative overflow-hidden border-y border-line">
+    <Section tone="tint" className="relative overflow-clip border-y border-line">
       <span
         aria-hidden
         className="ghost-word -top-[0.18em] -right-[0.06em] text-[clamp(7rem,15vw,14rem)]"
@@ -286,7 +286,12 @@ function PracticeGrid() {
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {practiceAreas.map((area, i) => (
-            <article key={area.id} className="card-raised group p-8 pt-9">
+            <article
+              key={area.id}
+              data-reveal
+              style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
+              className="card-raised group p-8 pt-9"
+            >
               <span aria-hidden className="ghost-num">
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -338,7 +343,7 @@ function PressBar() {
 
 function FeaturedMedia() {
   return (
-    <Section tone="ink" className="relative overflow-hidden">
+    <Section tone="ink" className="relative overflow-clip">
       <GhostWord
         tone="light"
         className="top-[-0.14em] right-[-0.04em] text-[clamp(6rem,13vw,12rem)]"
@@ -365,8 +370,13 @@ function FeaturedMedia() {
         </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">
-          {mediaFeatures.map((item) => (
-            <article key={item.title} className="group">
+          {mediaFeatures.map((item, i) => (
+            <article
+              key={item.title}
+              data-reveal
+              style={{ "--reveal-delay": `${i * 90}ms` } as React.CSSProperties}
+              className="group"
+            >
               <a
                 href={item.href}
                 target="_blank"
@@ -403,7 +413,7 @@ function FeaturedMedia() {
 
 function ClosingCta() {
   return (
-    <Section tone="paper" className="relative overflow-hidden border-t border-line">
+    <Section tone="paper" className="relative overflow-clip border-t border-line">
       <GhostWord className="bottom-[-0.2em] left-[-0.04em] text-[clamp(6rem,14vw,13rem)]">
         Contact
       </GhostWord>
@@ -431,7 +441,7 @@ function ClosingCta() {
             </div>
           </div>
 
-          <div className="photo-stage lg:ml-auto lg:max-w-md">
+          <div data-reveal className="photo-stage lg:ml-auto lg:max-w-md">
             <div className="frame aspect-[4/5]">
               <Photo id="desk-seated" sizes="(min-width: 1024px) 38vw, 100vw" position="50% 35%" />
             </div>

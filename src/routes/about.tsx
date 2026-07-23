@@ -106,7 +106,7 @@ function AboutHero() {
 
 function Biography() {
   return (
-    <Section className="relative overflow-hidden">
+    <Section className="relative overflow-clip">
       <GhostWord className="top-[-0.16em] right-[-0.05em] text-[clamp(6rem,13vw,12rem)]">
         Story
       </GhostWord>
@@ -162,8 +162,13 @@ function ValueSet() {
             />
 
             <div className="mt-14 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
-              {values.map((v) => (
-                <div key={v.n} className="bg-paper p-8">
+              {values.map((v, i) => (
+                <div
+                  key={v.n}
+                  data-reveal
+                  style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+                  className="bg-paper p-8"
+                >
                   <span className="display text-3xl text-brand">{v.n}</span>
                   <h3 className="display mt-4 text-2xl text-ink">{v.title}</h3>
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{v.body}</p>
@@ -199,7 +204,7 @@ function ValueSet() {
  */
 function Legacy() {
   return (
-    <Section className="relative overflow-hidden">
+    <Section className="relative overflow-clip">
       <GhostWord className="bottom-[-0.2em] left-[-0.04em] text-[clamp(6rem,13vw,12rem)]">
         Legacy
       </GhostWord>
@@ -276,7 +281,7 @@ function CredentialTable() {
   ];
 
   return (
-    <Section className="relative overflow-hidden">
+    <Section className="relative overflow-clip">
       <GhostWord className="top-[-0.16em] right-[-0.05em] text-[clamp(6rem,14vw,13rem)]">
         Record
       </GhostWord>

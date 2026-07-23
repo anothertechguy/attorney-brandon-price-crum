@@ -105,7 +105,7 @@ function PracticeHero() {
 
 function AreaList() {
   return (
-    <Section className="relative overflow-hidden">
+    <Section className="relative overflow-clip">
       <GhostWord className="top-[-0.18em] right-[-0.05em] text-[clamp(6rem,14vw,13rem)]">
         Cases
       </GhostWord>
@@ -115,6 +115,8 @@ function AreaList() {
           {practiceAreas.map((area, i) => (
             <div
               key={area.id}
+              data-reveal
+              style={{ "--reveal-delay": `${i * 60}ms` } as React.CSSProperties}
               className="row-raised group grid gap-4 border-b border-line px-5 py-10 lg:grid-cols-[6rem_1fr_1.1fr] lg:gap-10 lg:px-8"
             >
               <span
@@ -137,7 +139,7 @@ function AreaList() {
 
 function Process() {
   return (
-    <Section tone="ink" className="relative overflow-hidden">
+    <Section tone="ink" className="relative overflow-clip">
       <GhostWord
         tone="light"
         className="top-[-0.16em] right-[-0.04em] text-[clamp(6rem,13vw,12rem)]"
@@ -162,8 +164,13 @@ function Process() {
           </div>
 
           <ol className="space-y-px overflow-hidden rounded-card">
-            {steps.map((step) => (
-              <li key={step.n} className="bg-white/[0.04] p-8 lg:p-10">
+            {steps.map((step, i) => (
+              <li
+                key={step.n}
+                data-reveal
+                style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+                className="bg-white/[0.04] p-8 lg:p-10"
+              >
                 <span className="label-xs text-brand-bright">{step.n}</span>
                 <h3 className="display mt-4 text-2xl text-white">{step.title}</h3>
                 <p className="mt-3 leading-relaxed text-white/60">{step.body}</p>
@@ -191,8 +198,13 @@ function FeeNote() {
         />
 
         <div className="mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line lg:grid-cols-3">
-          {accessPoints.map((point) => (
-            <div key={point.title} className="bg-paper p-8">
+          {accessPoints.map((point, i) => (
+            <div
+              key={point.title}
+              data-reveal
+              style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+              className="bg-paper p-8"
+            >
               <h3 className="display text-2xl leading-tight text-ink">{point.title}</h3>
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">{point.body}</p>
             </div>
