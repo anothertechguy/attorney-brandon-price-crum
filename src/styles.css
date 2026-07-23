@@ -1,203 +1,259 @@
 @import "tailwindcss" source(none);
 @source "../src";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 /*
- * Brandon Price-Crum — bright, poppy, Serhant-inspired.
- * Electric blue on generous white with heavy sans display type.
+ * Brandon Price-Crum — personal brand system.
+ *
+ * Palette is derived from Serious Injury Law Group's own mark (#0096D6) and a
+ * slate-navy ramp pulled from the firm's site, so his personal site and the
+ * firm read as one family. Type pairs an editorial serif for display with Inter
+ * for everything functional: authority without stiffness.
+ *
+ * Restraint is deliberate. Glow, gradient text, and bobbing photos read as
+ * startup landing page; hairlines, deep navy, and generous white read as
+ * counsel worth hiring.
  */
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-ink: var(--ink);
-  --color-electric: var(--electric);
-  --color-electric-soft: var(--electric-soft);
-  --color-sky-tint: var(--sky-tint);
-  --font-display: "Archivo", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-}
+@theme {
+  --color-brand: oklch(0.639 0.141 237.6); /* #0096D6 — firm blue */
+  --color-brand-bright: oklch(0.705 0.134 232.5); /* #29ADE5 */
+  --color-brand-deep: oklch(0.5 0.13 243);
+  --color-brand-ink: oklch(0.34 0.09 245);
 
-:root {
-  --radius: 1rem;
+  /* Slate-navy ramp */
+  --color-ink: oklch(0.216 0.031 243);
+  --color-ink-soft: oklch(0.338 0.034 238.9); /* #273A47 */
+  --color-slate-1: oklch(0.472 0.041 238.5); /* #465F70 */
+  --color-slate-2: oklch(0.544 0.054 237.1); /* #51758C */
+  --color-slate-3: oklch(0.657 0.033 235.9); /* #7F95A3 */
+  --color-slate-4: oklch(0.743 0.03 238.4); /* #9BAFBD */
+  --color-slate-5: oklch(0.836 0.022 235.1); /* #BCCCD6 */
+  --color-slate-6: oklch(0.91 0.016 239.1); /* #D8E3EB */
 
-  /* Base surfaces — bright, airy */
-  --background: oklch(0.995 0.003 240);
-  --foreground: oklch(0.18 0.03 250);
-  --ink: oklch(0.14 0.04 255);
+  /* Blue tints */
+  --color-tint-1: oklch(0.988 0.007 233.6); /* #F7FCFF */
+  --color-tint-2: oklch(0.952 0.03 226); /* #DBF4FF */
+  --color-tint-3: oklch(0.922 0.051 225.2); /* #C2EDFF */
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.03 250);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.03 250);
+  --color-paper: oklch(1 0 0);
+  --color-background: oklch(0.993 0.003 240);
+  --color-foreground: oklch(0.216 0.031 243);
+  --color-muted: oklch(0.472 0.041 238.5);
+  --color-line: oklch(0.91 0.016 239.1);
 
-  /* Electric brand blue — Serhant-esque */
-  --primary: oklch(0.55 0.22 258);
-  --primary-foreground: oklch(0.99 0.005 240);
-  --electric: oklch(0.6 0.24 258);
-  --electric-soft: oklch(0.88 0.09 250);
-  --sky-tint: oklch(0.97 0.025 245);
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --secondary: oklch(0.965 0.012 245);
-  --secondary-foreground: oklch(0.2 0.04 255);
-  --muted: oklch(0.965 0.012 245);
-  --muted-foreground: oklch(0.5 0.03 255);
-  --accent: oklch(0.94 0.05 250);
-  --accent-foreground: oklch(0.2 0.05 258);
+  --radius-card: 0.5rem;
 
-  --destructive: oklch(0.6 0.24 27);
-  --destructive-foreground: oklch(0.99 0.003 240);
-  --border: oklch(0.9 0.015 250);
-  --input: oklch(0.9 0.015 250);
-  --ring: oklch(0.6 0.22 258);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-line);
   }
-  html, body {
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-synthesis-weight: none;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
-  h1, h2, h3, h4, .font-display {
-    font-family: var(--font-display);
-    letter-spacing: -0.02em;
+
+  /* Visible, on-brand focus ring for every interactive element. */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: white;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-@utility text-mega {
+/* ---------------------------------------------------------------- type ---- */
+
+/** Oversized editorial serif. Line-height tightens as the size grows. */
+@utility display {
   font-family: var(--font-display);
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.045em;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+/** Wide-tracked uppercase micro-label that sits above a heading. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-brand-deep);
 }
 
-@utility glass-card {
-  background: linear-gradient(180deg, oklch(1 0 0 / 0.9), oklch(1 0 0 / 0.7));
-  backdrop-filter: blur(14px);
-  border: 1px solid oklch(1 0 0 / 0.6);
-  box-shadow:
-    0 30px 80px -30px oklch(0.55 0.22 258 / 0.35),
-    0 1px 0 oklch(1 0 0) inset;
+@utility label-xs {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
-@utility photo-pop {
-  border-radius: 1.75rem;
+/* ------------------------------------------------------------- surfaces ---- */
+
+@utility rule-accent {
+  position: relative;
+  padding-left: 1.25rem;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.35em;
+    bottom: 0.35em;
+    width: 2px;
+    background: var(--color-brand);
+  }
+}
+
+@utility card {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+/** Frame used for every portrait: hairline, soft lift, no candy glow. */
+@utility frame {
+  position: relative;
   overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--color-slate-6);
   box-shadow:
-    0 40px 80px -30px oklch(0.4 0.2 258 / 0.45),
-    0 10px 30px -10px oklch(0.4 0.15 250 / 0.25),
-    0 0 0 1px oklch(1 0 0 / 0.6) inset;
+    0 1px 2px oklch(0.216 0.031 243 / 0.06),
+    0 18px 40px -24px oklch(0.216 0.031 243 / 0.35);
 }
 
-@utility gradient-brand {
-  background: linear-gradient(135deg, var(--electric) 0%, oklch(0.72 0.18 240) 50%, oklch(0.55 0.22 268) 100%);
-}
+/* -------------------------------------------------------------- buttons ---- */
 
-@utility gradient-halo {
-  background: radial-gradient(60% 60% at 50% 40%, oklch(0.72 0.2 250 / 0.45), transparent 70%);
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.875rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.25s var(--ease-out-soft),
+    color 0.25s var(--ease-out-soft),
+    border-color 0.25s var(--ease-out-soft),
+    transform 0.25s var(--ease-out-soft);
+  &:hover {
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 @utility btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.8rem;
-  padding: 0.95rem 1.6rem;
+  background: var(--color-ink);
   color: white;
-  background: linear-gradient(180deg, oklch(0.62 0.23 258), oklch(0.5 0.22 258));
-  border-radius: 999px;
-  box-shadow:
-    0 20px 40px -15px oklch(0.5 0.22 258 / 0.6),
-    0 2px 0 oklch(1 0 0 / 0.35) inset;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   &:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 26px 50px -12px oklch(0.5 0.22 258 / 0.7),
-      0 2px 0 oklch(1 0 0 / 0.5) inset;
+    background: var(--color-brand-deep);
   }
 }
 
-@utility btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.8rem;
-  padding: 0.9rem 1.5rem;
-  color: var(--ink);
+@utility btn-brand {
+  background: var(--color-brand);
+  color: white;
+  &:hover {
+    background: var(--color-brand-deep);
+  }
+}
+
+@utility btn-outline {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-slate-5);
+  &:hover {
+    border-color: var(--color-ink);
+    background: var(--color-paper);
+  }
+}
+
+@utility btn-on-dark {
   background: white;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  transition: all 0.2s ease;
+  color: var(--color-ink);
   &:hover {
-    border-color: var(--electric);
-    color: var(--electric);
+    background: var(--color-tint-2);
   }
 }
 
-@utility eyebrow {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--electric);
+/* ------------------------------------------------------------ animation ---- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-@keyframes floaty {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(0.3deg); }
-}
-@utility animate-floaty {
-  animation: floaty 8s ease-in-out infinite;
+/** Entrance used sparingly on hero content only. */
+@utility animate-rise {
+  animation: rise 0.9s var(--ease-out-soft) both;
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
+
 @utility animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 45s linear infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }

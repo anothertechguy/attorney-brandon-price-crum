@@ -1,15 +1,35 @@
-// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - TanStack devtools (dev-only, first), tanstackStart, viteReact, tailwindcss, tsConfigPaths,
-//     nitro (build-only using cloudflare as a default target), VITE_* env injection, @ path alias,
-//     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "vite";
+
+import { site } from "./src/content/site";
+
+/**
+ * GitHub Pages serves project repos from a subpath
+ * (`/<repo>/`), so the demo build needs a base. Production on the real domain
+ * serves from the root and leaves these unset.
+ *
+ *   BASE_PATH=/attorney-brandon-price-crum/  SITE_URL=https://…  npm run build
+ */
+const basePath = process.env.BASE_PATH ?? "/";
+const siteUrl = (process.env.SITE_URL ?? site.url).replace(/\/$/, "");
 
 export default defineConfig({
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
-  },
+  base: basePath,
+  // Vite resolves the "@/*" alias straight from tsconfig.json.
+  resolve: { tsconfigPaths: true },
+  // Vite exposes `base` as import.meta.env.BASE_URL on its own; only the
+  // absolute canonical/OG host needs injecting.
+  define: { __SITE_URL__: JSON.stringify(siteUrl) },
+  plugins: [
+    tailwindcss(),
+    tanstackStart({
+      // Every page is static content, so ship static HTML and let the CDN serve
+      // it. Only the contact server function needs a running server.
+      prerender: { enabled: true, crawlLinks: true, failOnError: true },
+      sitemap: { enabled: true, host: siteUrl },
+    }),
+    react(),
+  ],
 });
