@@ -6,12 +6,12 @@
  *
  * Palette is derived from Serious Injury Law Group's own mark (#0096D6) and a
  * slate-navy ramp pulled from the firm's site, so his personal site and the
- * firm read as one family. Type pairs an editorial serif for display with Inter
- * for everything functional: authority without stiffness.
+ * firm read as one family. Type is a single family — Montserrat — with weight
+ * carrying the hierarchy, following ryanserhant.com.
  *
- * Restraint is deliberate. Glow, gradient text, and bobbing photos read as
- * startup landing page; hairlines, deep navy, and generous white read as
- * counsel worth hiring.
+ * Depth comes from layered planes, brand-tinted shadow, and restrained
+ * perspective rather than from glow or gradient text, which read as startup
+ * landing page rather than as counsel worth hiring.
  */
 
 @theme {
@@ -184,26 +184,55 @@
   border-radius: var(--radius-card);
 }
 
-/** Frame used for every portrait: hairline, soft lift, no candy glow. */
+/**
+ * Base frame for every portrait. The stacked shadow gives near and far falloff
+ * rather than one flat blur, the far layer is brand-tinted so the lift picks up
+ * the palette instead of going muddy grey, and the inset highlight catches the
+ * top edge like light on a physical print.
+ */
 @utility frame {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-card);
   background: var(--color-slate-6);
   box-shadow:
-    0 1px 2px oklch(0.216 0.031 243 / 0.06),
-    0 18px 40px -24px oklch(0.216 0.031 243 / 0.35);
+    0 1px 2px oklch(0.216 0.031 243 / 0.07),
+    0 8px 16px -10px oklch(0.216 0.031 243 / 0.2),
+    0 30px 55px -26px oklch(0.34 0.09 245 / 0.45),
+    inset 0 1px 0 oklch(1 0 0 / 0.5);
 }
 
 /**
- * Wraps a `.frame` and sets it on a stage: a tinted panel offset behind the
- * photograph plus a hairline outline offset the other way. Two flat planes at
- * different depths read as dimension without resorting to a drop shadow big
- * enough to look like a sticker.
+ * Soft colour bloom behind an image. The default treatment for secondary
+ * photographs — enough to lift them off the page without the scaffolding of a
+ * full stage.
+ */
+@utility photo-bloom {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -6% -5% -10%;
+    z-index: -1;
+    border-radius: 40%;
+    background: radial-gradient(58% 58% at 50% 58%, oklch(0.72 0.13 235 / 0.45), transparent 72%);
+    filter: blur(44px);
+  }
+}
+
+/**
+ * Feature treatment: a tinted panel offset behind the photograph plus a
+ * hairline outline offset the other way. Two planes at different depths read as
+ * dimension without a drop shadow big enough to look like a sticker. Hover adds
+ * a slight perspective tilt — real 3D, kept under two degrees so it registers
+ * as depth rather than as a trick.
  */
 @utility photo-stage {
   position: relative;
   isolation: isolate;
+  perspective: 1400px;
 
   &::before {
     content: "";
@@ -212,8 +241,14 @@
     z-index: -1;
     translate: 1.5rem 1.5rem;
     border-radius: var(--radius-card);
-    background: linear-gradient(150deg, var(--color-brand), var(--color-brand-deep));
-    opacity: 0.16;
+    background: linear-gradient(
+      150deg,
+      var(--color-brand-bright),
+      var(--color-brand) 45%,
+      var(--color-brand-ink)
+    );
+    opacity: 0.2;
+    transition: translate 0.7s var(--ease-out-soft);
   }
 
   &::after {
@@ -224,13 +259,30 @@
     translate: -0.75rem -0.75rem;
     border-radius: var(--radius-card);
     border: 1px solid var(--color-brand);
-    opacity: 0.22;
+    opacity: 0.25;
+    transition: translate 0.7s var(--ease-out-soft);
   }
 
   & > .frame {
     box-shadow:
-      0 2px 4px oklch(0.216 0.031 243 / 0.08),
-      0 30px 60px -28px oklch(0.34 0.09 245 / 0.5);
+      0 2px 4px oklch(0.216 0.031 243 / 0.09),
+      0 12px 24px -12px oklch(0.216 0.031 243 / 0.22),
+      0 40px 70px -30px oklch(0.34 0.09 245 / 0.55),
+      inset 0 1px 0 oklch(1 0 0 / 0.55);
+    transition: transform 0.7s var(--ease-out-soft);
+    transform-style: preserve-3d;
+  }
+
+  &:hover > .frame {
+    transform: rotateX(1.2deg) rotateY(-1.8deg) translateY(-5px);
+  }
+
+  &:hover::before {
+    translate: 2rem 2rem;
+  }
+
+  &:hover::after {
+    translate: -1rem -1rem;
   }
 }
 

@@ -88,8 +88,10 @@ function ContactPage() {
                 ))}
               </div>
 
-              <div className="frame mt-14 hidden aspect-[4/5] max-w-xs lg:block">
-                <Photo id="navy-seated-smiling" sizes="30vw" />
+              <div className="photo-bloom mt-14 hidden max-w-xs lg:block">
+                <div className="frame aspect-[4/5]">
+                  <Photo id="navy-seated-smiling" sizes="30vw" />
+                </div>
               </div>
             </div>
 

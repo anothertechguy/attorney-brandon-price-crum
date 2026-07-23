@@ -119,23 +119,26 @@ function Coverage() {
             <article
               key={item.title}
               className={`group grid gap-8 lg:grid-cols-2 lg:gap-16 ${
-                i % 2 === 1 ? "lg:[&>a]:order-2" : ""
+                // Only the photo column flips; matching every child would cancel out.
+                i % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
               }`}
             >
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label={`${item.title} — ${item.outlet}`}
-                className="frame block aspect-[4/3]"
-              >
-                <Photo
-                  id={item.photo}
-                  alt=""
-                  sizes="(min-width: 1024px) 46vw, 100vw"
-                  imgClassName="transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                />
-              </a>
+              <div className="photo-stage">
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label={`${item.title} — ${item.outlet}`}
+                  className="frame block aspect-[4/3]"
+                >
+                  <Photo
+                    id={item.photo}
+                    alt=""
+                    sizes="(min-width: 1024px) 46vw, 100vw"
+                    imgClassName="transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                  />
+                </a>
+              </div>
 
               <div className="flex flex-col justify-center">
                 <p className="label-xs text-brand-deep">
@@ -233,8 +236,10 @@ function PressKit() {
             </Link>
           </div>
 
-          <div className="frame aspect-[3/4] lg:ml-auto lg:max-w-sm">
-            <Photo id="navy-seated-serious" sizes="(min-width: 1024px) 32vw, 100vw" />
+          <div className="photo-bloom lg:ml-auto lg:max-w-sm">
+            <div className="frame aspect-[3/4]">
+              <Photo id="navy-seated-serious" sizes="(min-width: 1024px) 32vw, 100vw" />
+            </div>
           </div>
         </div>
       </Container>

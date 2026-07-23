@@ -112,8 +112,10 @@ function Biography() {
                 </>
               }
             />
-            <div className="frame mt-10 hidden aspect-[4/5] max-w-xs lg:block">
-              <Photo id="gray-seated" sizes="30vw" />
+            <div className="photo-bloom mt-10 hidden max-w-xs lg:block">
+              <div className="frame aspect-[4/5]">
+                <Photo id="gray-seated" sizes="30vw" />
+              </div>
             </div>
           </div>
 
@@ -158,11 +160,15 @@ function ValueSet() {
           </div>
 
           <div className="grid grid-cols-2 gap-5 lg:grid-cols-1">
-            <div className="frame aspect-[3/4]">
-              <Photo id="gray-chin" sizes="(min-width: 1024px) 30vw, 45vw" position="50% 15%" />
+            <div className="photo-bloom">
+              <div className="frame aspect-[3/4]">
+                <Photo id="gray-chin" sizes="(min-width: 1024px) 30vw, 45vw" position="50% 15%" />
+              </div>
             </div>
-            <div className="frame aspect-[3/4] lg:hidden">
-              <Photo id="gray-seated" sizes="45vw" />
+            <div className="photo-bloom lg:hidden">
+              <div className="frame aspect-[3/4]">
+                <Photo id="gray-seated" sizes="45vw" />
+              </div>
             </div>
           </div>
         </div>

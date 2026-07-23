@@ -98,13 +98,15 @@ function Hero() {
 
           {/* Portrait column — image at native ratio, credential card below it. */}
           <div className="lg:pl-6">
-            <div className="frame aspect-[2/3] w-full">
-              <Photo
-                id="blue-standing"
-                priority
-                sizes="(min-width: 1024px) 44vw, 100vw"
-                position="50% 20%"
-              />
+            <div className="photo-bloom">
+              <div className="frame aspect-[2/3] w-full">
+                <Photo
+                  id="blue-standing"
+                  priority
+                  sizes="(min-width: 1024px) 44vw, 100vw"
+                  position="50% 20%"
+                />
+              </div>
             </div>
 
             <div className="card mt-4 flex items-center gap-4 p-5">
