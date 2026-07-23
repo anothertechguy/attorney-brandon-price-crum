@@ -61,8 +61,8 @@ function AboutHero() {
         <div className="grid items-end gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
           <div className="animate-rise">
             <p className="eyebrow">About</p>
-            <h1 className="display mt-6 text-[clamp(2.75rem,7vw,5.25rem)] text-ink">
-              The law as <em className="italic text-brand">a calling.</em>
+            <h1 className="display mt-6 text-[clamp(2.25rem,5vw,3.75rem)] text-ink">
+              The law as <em className="text-brand not-italic">a calling.</em>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">{bio.lede}</p>
 
@@ -207,7 +207,7 @@ function Endorsement() {
     <Section tone="ink" className="py-24 lg:py-28">
       <Container>
         <figure className="mx-auto max-w-4xl text-center">
-          <blockquote className="display text-[clamp(1.75rem,3.6vw,3rem)] leading-[1.15] text-white">
+          <blockquote className="quote text-[clamp(1.375rem,2.6vw,2.125rem)] text-white">
             &ldquo;{endorsement.text}&rdquo;
           </blockquote>
           <figcaption className="mt-8">

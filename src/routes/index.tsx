@@ -65,10 +65,9 @@ function Hero() {
               {site.firmShort} <span className="mx-2 text-slate-4">/</span> Alabama &amp; Georgia
             </p>
 
-            <h1 className="display mt-6 text-[clamp(2.75rem,7vw,5.25rem)] text-ink">
-              Standing in the gap between a wrong
-              <br className="hidden sm:block" /> and{" "}
-              <em className="italic text-brand">a remedy.</em>
+            <h1 className="display mt-6 max-w-[15ch] text-[clamp(2.25rem,5vw,3.75rem)] text-ink">
+              Standing in the gap between a wrong and{" "}
+              <em className="text-brand not-italic">a remedy.</em>
             </h1>
 
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
@@ -205,7 +204,7 @@ function Thesis() {
     <Section tone="paper" className="border-y border-line py-20 lg:py-28">
       <Container>
         <figure className="mx-auto max-w-4xl text-center">
-          <blockquote className="display text-[clamp(1.5rem,3.2vw,2.6rem)] leading-[1.2] text-ink">
+          <blockquote className="quote text-[clamp(1.25rem,2.4vw,1.9rem)] text-ink">
             &ldquo;{quotes.gap.text}&rdquo;
           </blockquote>
           <figcaption className="label-xs mt-8 text-slate-2">
@@ -269,7 +268,7 @@ function PressBar() {
         <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
           {pressOutlets.map((outlet) => (
             <li key={outlet.name} className="text-center">
-              <span className="display text-xl text-slate-1 lg:text-2xl">{outlet.name}</span>
+              <span className="display text-base text-slate-1 lg:text-lg">{outlet.name}</span>
               <span className="label-xs mt-1 block text-slate-4">{outlet.note}</span>
             </li>
           ))}

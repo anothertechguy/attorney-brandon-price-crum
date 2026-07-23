@@ -76,8 +76,8 @@ function PracticeHero() {
         <div className="grid items-end gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
           <div className="animate-rise">
             <p className="eyebrow">Practice</p>
-            <h1 className="display mt-6 text-[clamp(2.75rem,7vw,5.25rem)] text-ink">
-              The cases he <em className="italic text-brand">takes on.</em>
+            <h1 className="display mt-6 text-[clamp(2.25rem,5vw,3.75rem)] text-ink">
+              The cases he <em className="text-brand not-italic">takes on.</em>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">
               Matters handled through {site.firm}, which maintains offices in Montgomery and
@@ -105,7 +105,7 @@ function AreaList() {
               className="group grid gap-4 border-b border-line py-10 lg:grid-cols-[5rem_1fr_1.1fr] lg:gap-10"
             >
               <span className="label-xs pt-2 text-slate-4">{String(i + 1).padStart(2, "0")}</span>
-              <h2 className="display text-[clamp(1.75rem,3vw,2.5rem)] text-ink transition-colors group-hover:text-brand">
+              <h2 className="display text-[clamp(1.5rem,2.6vw,2.125rem)] text-ink transition-colors group-hover:text-brand">
                 {area.title}
               </h2>
               <p className="text-lg leading-relaxed text-muted lg:pt-2">{area.blurb}</p>

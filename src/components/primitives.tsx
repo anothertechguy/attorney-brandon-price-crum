@@ -60,7 +60,7 @@ export function SectionHead({
       )}
       <h2
         className={cn(
-          "display mt-4 text-[clamp(2.25rem,4.6vw,3.75rem)]",
+          "display mt-4 text-[clamp(1.875rem,3.4vw,2.75rem)]",
           tone === "light" ? "text-white" : "text-ink",
         )}
       >
@@ -119,7 +119,7 @@ export function PullQuote({
     <figure className={cn("rule-accent", className)}>
       <blockquote
         className={cn(
-          "display text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.15]",
+          "quote text-[clamp(1.25rem,2.1vw,1.75rem)]",
           tone === "light" ? "text-white" : "text-ink",
         )}
       >

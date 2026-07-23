@@ -43,8 +43,8 @@ function ContactPage() {
           <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <div className="animate-rise">
               <p className="eyebrow">Contact</p>
-              <h1 className="display mt-6 text-[clamp(2.75rem,6.5vw,4.5rem)] text-ink">
-                Tell him what <em className="italic text-brand">happened.</em>
+              <h1 className="display mt-6 text-[clamp(2.25rem,5vw,3.5rem)] text-ink">
+                Tell him what <em className="text-brand not-italic">happened.</em>
               </h1>
               <p className="mt-8 max-w-lg text-lg leading-relaxed text-muted">
                 Consultations are free and confidential. Share as much or as little as you like —

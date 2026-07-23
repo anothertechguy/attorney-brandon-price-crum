@@ -47,8 +47,8 @@ function MediaHero() {
         <div className="grid items-end gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
           <div className="animate-rise">
             <p className="eyebrow">Media &amp; press</p>
-            <h1 className="display mt-6 text-[clamp(2.75rem,7vw,5.25rem)] text-ink">
-              On the <em className="italic text-brand">record.</em>
+            <h1 className="display mt-6 text-[clamp(2.25rem,5vw,3.75rem)] text-ink">
+              On the <em className="text-brand not-italic">record.</em>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">
               Brandon speaks with press on personal injury and civil rights matters, trial practice,
@@ -90,7 +90,9 @@ function OutletWall() {
               key={outlet.name}
               className="flex min-h-[7.5rem] flex-col items-center justify-center bg-paper px-5 py-8 text-center"
             >
-              <span className="display text-xl leading-tight text-ink">{outlet.name}</span>
+              <span className="display text-[0.9375rem] leading-snug text-balance text-ink">
+                {outlet.name}
+              </span>
               <span className="label-xs mt-2 text-slate-3">{outlet.note}</span>
             </li>
           ))}
@@ -139,7 +141,7 @@ function Coverage() {
                   <span className="mx-2 text-slate-4">/</span>
                   <span className="text-slate-2">{item.date}</span>
                 </p>
-                <h3 className="display mt-4 text-[clamp(1.75rem,3vw,2.5rem)] leading-tight text-ink">
+                <h3 className="display mt-4 text-[clamp(1.5rem,2.6vw,2.125rem)] leading-tight text-ink">
                   {item.title}
                 </h3>
                 <p className="mt-5 text-lg leading-relaxed text-muted">{item.dek}</p>

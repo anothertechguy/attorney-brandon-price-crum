@@ -18,7 +18,7 @@ function Wordmark({ tone = "dark" }: { tone?: "dark" | "light" }) {
     <span className="flex items-baseline gap-2.5 leading-none">
       <span
         className={cn(
-          "display text-[1.35rem] tracking-tight",
+          "display-caps text-[1.0625rem]",
           tone === "light" ? "text-white" : "text-ink",
         )}
       >
@@ -119,7 +119,7 @@ export function SiteHeader() {
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                className="display border-b border-line py-4 text-3xl text-ink last:border-0"
+                className="display-caps border-b border-line py-4 text-2xl text-ink last:border-0"
                 activeProps={{ className: "!text-brand" }}
               >
                 {item.label}
