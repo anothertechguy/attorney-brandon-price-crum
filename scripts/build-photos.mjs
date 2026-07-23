@@ -7,6 +7,7 @@
 // adding or replacing a source photo.
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import prettier from "prettier";
 import sharp from "sharp";
 
 const SRC = "assets/photos";
@@ -162,7 +163,15 @@ ${body}
 export type PhotoId = keyof typeof photos;
 `;
 
-  await writeFile(MANIFEST, out);
+  // Format before writing. The manifest is committed and linted like any other
+  // source file, so generated output has to satisfy the same rules — otherwise
+  // a rebuild leaves the tree failing lint through no fault of the author.
+  const formatted = await prettier.format(out, {
+    ...(await prettier.resolveConfig(MANIFEST)),
+    filepath: MANIFEST,
+  });
+
+  await writeFile(MANIFEST, formatted);
 
   const total = entries.length * FORMATS.length;
   console.log(`✓ ${entries.length} photos → ${OUT}/ (${total}+ files), manifest → ${MANIFEST}`);

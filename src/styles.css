@@ -4,10 +4,13 @@
 /*
  * Brandon Price-Crum — personal brand system.
  *
- * Palette is derived from Serious Injury Law Group's own mark (#0096D6) and a
- * slate-navy ramp pulled from the firm's site, so his personal site and the
- * firm read as one family. Type is a single family — Montserrat — with weight
- * carrying the hierarchy, following ryanserhant.com.
+ * Palette started from Serious Injury Law Group's mark (#0096D6) and was then
+ * taken deeper and considerably more saturated to a royal blue, at client
+ * direction. The whole ramp — brand, slates, tints — shares hue ~262 so the
+ * page never shows two different blues.
+ *
+ * Type is a single family — Montserrat — with weight carrying the hierarchy,
+ * following ryanserhant.com.
  *
  * Depth comes from layered planes, brand-tinted shadow, and restrained
  * perspective rather than from glow or gradient text, which read as startup
@@ -15,31 +18,47 @@
  */
 
 @theme {
-  --color-brand: oklch(0.639 0.141 237.6); /* #0096D6 — firm blue */
-  --color-brand-bright: oklch(0.705 0.134 232.5); /* #29ADE5 */
-  --color-brand-deep: oklch(0.5 0.13 243);
-  --color-brand-ink: oklch(0.34 0.09 245);
+  /*
+   * Deep royal blue. Darker and considerably more saturated than the firm's
+   * cyan-leaning mark, and rotated about 25° round the hue wheel — the whole
+   * ramp shares hue ~262 so nothing reads as a second blue.
+   */
+  --color-brand: oklch(0.53 0.215 262); /* #1a5fe5 */
+  --color-brand-bright: oklch(0.62 0.2 262); /* #3d7efc — for dark grounds */
+  --color-brand-deep: oklch(0.44 0.19 263); /* #1245b9 — hover, small text */
+  --color-brand-ink: oklch(0.3 0.13 265); /* #0c246d */
 
-  /* Slate-navy ramp */
-  --color-ink: oklch(0.216 0.031 243);
-  --color-ink-soft: oklch(0.338 0.034 238.9); /* #273A47 */
-  --color-slate-1: oklch(0.472 0.041 238.5); /* #465F70 */
-  --color-slate-2: oklch(0.544 0.054 237.1); /* #51758C */
-  --color-slate-3: oklch(0.657 0.033 235.9); /* #7F95A3 */
-  --color-slate-4: oklch(0.743 0.03 238.4); /* #9BAFBD */
-  --color-slate-5: oklch(0.836 0.022 235.1); /* #BCCCD6 */
-  --color-slate-6: oklch(0.91 0.016 239.1); /* #D8E3EB */
+  /* Slate-navy ramp, pulled onto the same hue family. */
+  --color-ink: oklch(0.2 0.035 262); /* #0d1626 */
+  --color-ink-soft: oklch(0.33 0.04 258); /* #28364a */
+  --color-slate-1: oklch(0.47 0.045 256); /* #4a5c74 */
+  --color-slate-2: oklch(0.54 0.05 256); /* #5c708c */
+  --color-slate-3: oklch(0.655 0.035 255); /* #8392a6 */
+  --color-slate-4: oklch(0.74 0.03 255); /* #9eacbe */
+  --color-slate-5: oklch(0.835 0.022 255); /* #c0cad7 */
+  --color-slate-6: oklch(0.91 0.018 255); /* #dae2ed */
 
   /* Blue tints */
-  --color-tint-1: oklch(0.988 0.007 233.6); /* #F7FCFF */
-  --color-tint-2: oklch(0.952 0.03 226); /* #DBF4FF */
-  --color-tint-3: oklch(0.922 0.051 225.2); /* #C2EDFF */
+  --color-tint-1: oklch(0.985 0.008 262); /* #f7faff */
+  --color-tint-2: oklch(0.945 0.035 262); /* #e0eeff */
+  --color-tint-3: oklch(0.9 0.06 262); /* #c9dfff */
 
   --color-paper: oklch(1 0 0);
-  --color-background: oklch(0.993 0.003 240);
-  --color-foreground: oklch(0.216 0.031 243);
-  --color-muted: oklch(0.472 0.041 238.5);
-  --color-line: oklch(0.91 0.016 239.1);
+  --color-background: oklch(0.992 0.004 262);
+  --color-foreground: oklch(0.2 0.035 262);
+  --color-muted: oklch(0.47 0.045 256);
+  --color-line: oklch(0.91 0.018 255);
+
+  /*
+   * Shadow inks. Kept as tokens because they were previously repeated as
+   * literals across six utilities, which meant a palette change had to be
+   * hunted down by hand. The far layer is brand-tinted so lifts stay in family
+   * instead of going grey.
+   */
+  --shadow-near: oklch(0.2 0.035 262 / 0.07);
+  --shadow-mid: oklch(0.2 0.035 262 / 0.2);
+  --shadow-far: oklch(0.3 0.13 265 / 0.45);
+  --shadow-far-strong: oklch(0.3 0.13 265 / 0.55);
 
   /*
    * One family, weight-driven hierarchy — the Serhant model. Montserrat is the
@@ -196,9 +215,9 @@
   border-radius: var(--radius-card);
   background: var(--color-slate-6);
   box-shadow:
-    0 1px 2px oklch(0.216 0.031 243 / 0.07),
-    0 8px 16px -10px oklch(0.216 0.031 243 / 0.2),
-    0 30px 55px -26px oklch(0.34 0.09 245 / 0.45),
+    0 1px 2px var(--shadow-near),
+    0 8px 16px -10px var(--shadow-mid),
+    0 30px 55px -26px var(--shadow-far),
     inset 0 1px 0 oklch(1 0 0 / 0.5);
 }
 
@@ -217,7 +236,7 @@
     inset: -6% -5% -10%;
     z-index: -1;
     border-radius: 40%;
-    background: radial-gradient(58% 58% at 50% 58%, oklch(0.72 0.13 235 / 0.45), transparent 72%);
+    background: radial-gradient(58% 58% at 50% 58%, oklch(0.62 0.2 262 / 0.42), transparent 72%);
     filter: blur(44px);
   }
 }
@@ -265,9 +284,9 @@
 
   & > .frame {
     box-shadow:
-      0 2px 4px oklch(0.216 0.031 243 / 0.09),
-      0 12px 24px -12px oklch(0.216 0.031 243 / 0.22),
-      0 40px 70px -30px oklch(0.34 0.09 245 / 0.55),
+      0 2px 4px var(--shadow-near),
+      0 12px 24px -12px var(--shadow-mid),
+      0 40px 70px -30px var(--shadow-far-strong),
       inset 0 1px 0 oklch(1 0 0 / 0.55);
     transition: transform 0.7s var(--ease-out-soft);
     transform-style: preserve-3d;
@@ -317,12 +336,12 @@
   border: 1px solid var(--color-line);
   border-radius: var(--radius-card);
   background:
-    radial-gradient(130% 100% at 100% 0%, oklch(0.94 0.045 231 / 0.75), transparent 62%),
-    linear-gradient(165deg, oklch(1 0 0), oklch(0.975 0.01 236));
+    radial-gradient(130% 100% at 100% 0%, oklch(0.93 0.05 262 / 0.8), transparent 62%),
+    linear-gradient(165deg, oklch(1 0 0), oklch(0.975 0.012 262));
   box-shadow:
-    0 1px 2px oklch(0.216 0.031 243 / 0.06),
-    0 10px 20px -14px oklch(0.216 0.031 243 / 0.3),
-    0 26px 48px -30px oklch(0.34 0.09 245 / 0.42);
+    0 1px 2px var(--shadow-near),
+    0 10px 20px -14px var(--shadow-mid),
+    0 26px 48px -30px var(--shadow-far);
   transition:
     transform 0.5s var(--ease-out-soft),
     box-shadow 0.5s var(--ease-out-soft),
@@ -342,10 +361,10 @@
 
   &:hover {
     transform: translateY(-6px);
-    border-color: oklch(0.836 0.022 235.1);
+    border-color: var(--color-slate-5);
     box-shadow:
-      0 2px 6px oklch(0.216 0.031 243 / 0.07),
-      0 36px 64px -30px oklch(0.34 0.09 245 / 0.45);
+      0 2px 6px var(--shadow-near),
+      0 36px 64px -30px var(--shadow-far);
   }
 
   &:hover::before {
@@ -391,13 +410,13 @@
     inset: 0;
     z-index: -1;
     border-radius: var(--radius-card);
-    background: linear-gradient(90deg, oklch(0.955 0.035 230 / 0.95), transparent 72%);
+    background: linear-gradient(90deg, oklch(0.945 0.04 262 / 0.95), transparent 72%);
     opacity: 0;
     transition: opacity 0.45s var(--ease-out-soft);
   }
 
   &:hover {
-    box-shadow: 0 24px 50px -34px oklch(0.34 0.09 245 / 0.5);
+    box-shadow: 0 24px 50px -34px var(--shadow-far-strong);
     transform: translateX(6px);
   }
 
@@ -456,19 +475,28 @@
   }
 }
 
+/**
+ * Primary call to action. Brand blue with a soft cast of its own colour beneath
+ * it, so it sits forward of the page rather than flat on it.
+ */
 @utility btn-primary {
-  background: var(--color-ink);
+  background: var(--color-brand);
   color: white;
+  box-shadow: 0 10px 24px -12px oklch(0.3 0.13 265 / 0.55);
   &:hover {
     background: var(--color-brand-deep);
+    box-shadow: 0 14px 28px -12px oklch(0.3 0.13 265 / 0.6);
   }
 }
 
+/** Alias kept so both names resolve to the same treatment. */
 @utility btn-brand {
   background: var(--color-brand);
   color: white;
+  box-shadow: 0 10px 24px -12px oklch(0.3 0.13 265 / 0.55);
   &:hover {
     background: var(--color-brand-deep);
+    box-shadow: 0 14px 28px -12px oklch(0.3 0.13 265 / 0.6);
   }
 }
 

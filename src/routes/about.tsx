@@ -272,7 +272,7 @@ function CredentialTable() {
           ))}
         </div>
 
-        <p className="mt-12 max-w-3xl text-xs leading-relaxed text-slate-3">
+        <p className="mt-12 max-w-3xl text-xs leading-relaxed text-slate-2">
           Awards and recognitions are conferred by the organizations named. Selection criteria vary
           by organization and are available on request. No representation is made that the quality
           of legal services to be performed is greater than the quality of legal services performed

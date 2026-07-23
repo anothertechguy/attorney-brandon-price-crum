@@ -70,7 +70,7 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "author", content: site.formalName },
-      { name: "theme-color", content: "#0096D6" },
+      { name: "theme-color", content: "#1a5fe5" },
       { property: "og:site_name", content: site.formalName },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_US" },

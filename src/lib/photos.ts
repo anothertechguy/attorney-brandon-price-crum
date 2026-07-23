@@ -24,7 +24,8 @@ export const photos = {
     avif: "/photos/blue-standing-480.avif 480w, /photos/blue-standing-768.avif 768w, /photos/blue-standing-1067.avif 1067w",
     webp: "/photos/blue-standing-480.webp 480w, /photos/blue-standing-768.webp 768w, /photos/blue-standing-1067.webp 1067w",
     jpg: "/photos/blue-standing-480.jpg 480w, /photos/blue-standing-768.jpg 768w, /photos/blue-standing-1067.jpg 1067w",
-    placeholder: "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAABwBACdASoUAB4APxl2rlEspyQisBgMAZAjCWgAygAQ9KpDyGSo7xgV481rgAD+2N9CPmD203BLEyhlHA7ecsa4DTWrXdkm8oyuVave3ednbQAQTBgAAA==",
+    placeholder:
+      "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAABwBACdASoUAB4APxl2rlEspyQisBgMAZAjCWgAygAQ9KpDyGSo7xgV481rgAD+2N9CPmD203BLEyhlHA7ecsa4DTWrXdkm8oyuVave3ednbQAQTBgAAA==",
   },
   "desk-seated": {
     width: 1600,
@@ -35,7 +36,8 @@ export const photos = {
     avif: "/photos/desk-seated-480.avif 480w, /photos/desk-seated-768.avif 768w, /photos/desk-seated-1080.avif 1080w, /photos/desk-seated-1440.avif 1440w",
     webp: "/photos/desk-seated-480.webp 480w, /photos/desk-seated-768.webp 768w, /photos/desk-seated-1080.webp 1080w, /photos/desk-seated-1440.webp 1440w",
     jpg: "/photos/desk-seated-480.jpg 480w, /photos/desk-seated-768.jpg 768w, /photos/desk-seated-1080.jpg 1080w, /photos/desk-seated-1440.jpg 1440w",
-    placeholder: "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAACwAwCdASoUAA0APxl4slEspySisAgBkCMJYwC7AB9GxSaMqjy3wAD+s0RjTLOtARAYSDqc4klG7a8p4vHGeEY3J2MboGVkWy124KgAAAA=",
+    placeholder:
+      "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAACwAwCdASoUAA0APxl4slEspySisAgBkCMJYwC7AB9GxSaMqjy3wAD+s0RjTLOtARAYSDqc4klG7a8p4vHGeEY3J2MboGVkWy124KgAAAA=",
   },
   "desk-standing": {
     width: 1600,
@@ -46,7 +48,8 @@ export const photos = {
     avif: "/photos/desk-standing-480.avif 480w, /photos/desk-standing-768.avif 768w, /photos/desk-standing-1080.avif 1080w, /photos/desk-standing-1440.avif 1440w",
     webp: "/photos/desk-standing-480.webp 480w, /photos/desk-standing-768.webp 768w, /photos/desk-standing-1080.webp 1080w, /photos/desk-standing-1440.webp 1440w",
     jpg: "/photos/desk-standing-480.jpg 480w, /photos/desk-standing-768.jpg 768w, /photos/desk-standing-1080.jpg 1080w, /photos/desk-standing-1440.jpg 1440w",
-    placeholder: "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAwCdASoUAA4APxl2slCspySisAgBkCMJZQAAUlnX1OkW7pumNgAAzUVSEpuTBHdhyJfx08T2fXLqHAOa17mohd0p6oAA",
+    placeholder:
+      "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAwCdASoUAA4APxl2slCspySisAgBkCMJZQAAUlnX1OkW7pumNgAAzUVSEpuTBHdhyJfx08T2fXLqHAOa17mohd0p6oAA",
   },
   "gray-chin": {
     width: 990,
@@ -57,7 +60,8 @@ export const photos = {
     avif: "/photos/gray-chin-480.avif 480w, /photos/gray-chin-768.avif 768w, /photos/gray-chin-990.avif 990w",
     webp: "/photos/gray-chin-480.webp 480w, /photos/gray-chin-768.webp 768w, /photos/gray-chin-990.webp 990w",
     jpg: "/photos/gray-chin-480.jpg 480w, /photos/gray-chin-768.jpg 768w, /photos/gray-chin-990.jpg 990w",
-    placeholder: "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAACQBQCdASoUACEAPw1urVCsJqQitVgMAYAhiWUAwcwT4tsNABoq7eVvm0BdzOVMKTIkARBUsAD+J262IobJVdLVnG04XAjo3zaor7lqCbjOicKSUgUMG9mHDvWGES1JRzm6Hk3NdovMtKgyQKJTAAAA",
+    placeholder:
+      "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAACQBQCdASoUACEAPw1urVCsJqQitVgMAYAhiWUAwcwT4tsNABoq7eVvm0BdzOVMKTIkARBUsAD+J262IobJVdLVnG04XAjo3zaor7lqCbjOicKSUgUMG9mHDvWGES1JRzm6Hk3NdovMtKgyQKJTAAAA",
   },
   "gray-leaning": {
     width: 1213,
@@ -68,7 +72,8 @@ export const photos = {
     avif: "/photos/gray-leaning-480.avif 480w, /photos/gray-leaning-768.avif 768w, /photos/gray-leaning-1080.avif 1080w, /photos/gray-leaning-1213.avif 1213w",
     webp: "/photos/gray-leaning-480.webp 480w, /photos/gray-leaning-768.webp 768w, /photos/gray-leaning-1080.webp 1080w, /photos/gray-leaning-1213.webp 1213w",
     jpg: "/photos/gray-leaning-480.jpg 480w, /photos/gray-leaning-768.jpg 768w, /photos/gray-leaning-1080.jpg 1080w, /photos/gray-leaning-1213.jpg 1213w",
-    placeholder: "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABwBACdASoUABoAPwlorVCrpaQit/qoAXAhCUAVgALWziqgaD9Te93tlX2oAAD+eRwxd8OksZ9JAyQ2/todaGW+iukhM+j/BQL4hYaUYa1V/opt1bKjqnBPAYXEESv/s3Cucnf/rIgAAA==",
+    placeholder:
+      "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAABwBACdASoUABoAPwlorVCrpaQit/qoAXAhCUAVgALWziqgaD9Te93tlX2oAAD+eRwxd8OksZ9JAyQ2/todaGW+iukhM+j/BQL4hYaUYa1V/opt1bKjqnBPAYXEESv/s3Cucnf/rIgAAA==",
   },
   "gray-seated": {
     width: 1067,
@@ -79,7 +84,8 @@ export const photos = {
     avif: "/photos/gray-seated-480.avif 480w, /photos/gray-seated-768.avif 768w, /photos/gray-seated-1067.avif 1067w",
     webp: "/photos/gray-seated-480.webp 480w, /photos/gray-seated-768.webp 768w, /photos/gray-seated-1067.webp 1067w",
     jpg: "/photos/gray-seated-480.jpg 480w, /photos/gray-seated-768.jpg 768w, /photos/gray-seated-1067.jpg 1067w",
-    placeholder: "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAABwBACdASoUAB4APwVyqlCrp6Oit/qoAXAgiWcAACuVlEli/xIaHi2t1CxMgAD5sT2FO5TKJSHa/17SfowkOFFL54FSDyfS3L8SfctPpg6CsGgAAAA=",
+    placeholder:
+      "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAABwBACdASoUAB4APwVyqlCrp6Oit/qoAXAgiWcAACuVlEli/xIaHi2t1CxMgAD5sT2FO5TKJSHa/17SfowkOFFL54FSDyfS3L8SfctPpg6CsGgAAAA=",
   },
   "navy-headshot": {
     width: 1136,
@@ -90,7 +96,8 @@ export const photos = {
     avif: "/photos/navy-headshot-480.avif 480w, /photos/navy-headshot-768.avif 768w, /photos/navy-headshot-1080.avif 1080w, /photos/navy-headshot-1136.avif 1136w",
     webp: "/photos/navy-headshot-480.webp 480w, /photos/navy-headshot-768.webp 768w, /photos/navy-headshot-1080.webp 1080w, /photos/navy-headshot-1136.webp 1136w",
     jpg: "/photos/navy-headshot-480.jpg 480w, /photos/navy-headshot-768.jpg 768w, /photos/navy-headshot-1080.jpg 1080w, /photos/navy-headshot-1136.jpg 1136w",
-    placeholder: "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQBACdASoUABwAPwVsrFCrpiQit/qoAXAgiWcAygAcPv/McAdsyFNBBj21MktAAAC8hcFWefgVopbOF/K9CCiXepeRe8tp6KsqaqnhXUeMjXfFm2wAAA==",
+    placeholder:
+      "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQBACdASoUABwAPwVsrFCrpiQit/qoAXAgiWcAygAcPv/McAdsyFNBBj21MktAAAC8hcFWefgVopbOF/K9CCiXepeRe8tp6KsqaqnhXUeMjXfFm2wAAA==",
   },
   "navy-seated-serious": {
     width: 1067,
@@ -101,7 +108,8 @@ export const photos = {
     avif: "/photos/navy-seated-serious-480.avif 480w, /photos/navy-seated-serious-768.avif 768w, /photos/navy-seated-serious-1067.avif 1067w",
     webp: "/photos/navy-seated-serious-480.webp 480w, /photos/navy-seated-serious-768.webp 768w, /photos/navy-seated-serious-1067.webp 1067w",
     jpg: "/photos/navy-seated-serious-480.jpg 480w, /photos/navy-seated-serious-768.jpg 768w, /photos/navy-seated-serious-1067.jpg 1067w",
-    placeholder: "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAwBACdASoUAB4APwVsrFCrpiQit/qoAXAgiWkAAFu6AX4Sgq9hlV4Nj0AA/st5wa4UU39tmrf6zfl2S4Sf2ZMeoSh+dZvLQgj+pQAA",
+    placeholder:
+      "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAwBACdASoUAB4APwVsrFCrpiQit/qoAXAgiWkAAFu6AX4Sgq9hlV4Nj0AA/st5wa4UU39tmrf6zfl2S4Sf2ZMeoSh+dZvLQgj+pQAA",
   },
   "navy-seated-smiling": {
     width: 1067,
@@ -112,7 +120,8 @@ export const photos = {
     avif: "/photos/navy-seated-smiling-480.avif 480w, /photos/navy-seated-smiling-768.avif 768w, /photos/navy-seated-smiling-1067.avif 1067w",
     webp: "/photos/navy-seated-smiling-480.webp 480w, /photos/navy-seated-smiling-768.webp 768w, /photos/navy-seated-smiling-1067.webp 1067w",
     jpg: "/photos/navy-seated-smiling-480.jpg 480w, /photos/navy-seated-smiling-768.jpg 768w, /photos/navy-seated-smiling-1067.jpg 1067w",
-    placeholder: "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAABwBACdASoUAB4APwlqrlCrpaSit/qoAXAhCWkAAFu0xYWk7RzVcKf+VFQkAAD+DVhKUMRu5pl2k6vd2l7cIkx0rEPkdQ3ynaP8ofC2c8dorLg50AAAAA==",
+    placeholder:
+      "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAABwBACdASoUAB4APwlqrlCrpaSit/qoAXAhCWkAAFu0xYWk7RzVcKf+VFQkAAD+DVhKUMRu5pl2k6vd2l7cIkx0rEPkdQ3ynaP8ofC2c8dorLg50AAAAA==",
   },
 } satisfies Record<string, Photo>;
 

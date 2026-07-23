@@ -108,7 +108,7 @@ function AreaList() {
             >
               <span
                 aria-hidden
-                className="display text-4xl leading-none text-slate-5 transition-colors duration-500 group-hover:text-brand lg:text-5xl"
+                className="display text-4xl leading-none text-slate-3 transition-colors duration-500 group-hover:text-brand lg:text-5xl"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -175,7 +175,7 @@ function FeeNote() {
 
         <PullQuote quote={quotes.notChasing} className="mt-16 max-w-3xl" />
 
-        <p className="mt-12 max-w-3xl text-xs leading-relaxed text-slate-3">
+        <p className="mt-12 max-w-3xl text-xs leading-relaxed text-slate-2">
           Contingency arrangements are set out in a written fee agreement. A client may still be
           responsible for case expenses and court costs; those terms are explained in writing before
           any representation begins.

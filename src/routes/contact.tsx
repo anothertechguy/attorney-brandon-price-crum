@@ -309,7 +309,7 @@ function InquiryForm() {
           {!submitting && <ArrowRight className="h-4 w-4" aria-hidden />}
         </button>
 
-        <p className="text-center text-xs leading-relaxed text-slate-3">
+        <p className="text-center text-xs leading-relaxed text-slate-2">
           Free and confidential. Submitting this form does not create an attorney-client
           relationship.
         </p>
