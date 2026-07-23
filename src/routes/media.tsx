@@ -3,7 +3,14 @@ import { ArrowUpRight, Mic } from "lucide-react";
 
 import { Photo } from "@/components/photo";
 import { canonical } from "@/lib/urls";
-import { Container, PullQuote, Section, SectionHead } from "@/components/primitives";
+import {
+  Accent,
+  Container,
+  GhostWord,
+  PullQuote,
+  Section,
+  SectionHead,
+} from "@/components/primitives";
 import { contact, mediaFeatures, pressOutlets, quotes, site, socials } from "@/content/site";
 
 const title = `Media & Press — ${site.formalName}`;
@@ -106,11 +113,19 @@ function OutletWall() {
 
 function Coverage() {
   return (
-    <Section>
-      <Container>
+    <Section className="relative overflow-hidden">
+      <GhostWord className="top-[-0.16em] right-[-0.05em] text-[clamp(6rem,13vw,12rem)]">
+        Coverage
+      </GhostWord>
+
+      <Container className="relative">
         <SectionHead
           eyebrow="Selected coverage"
-          title="Interviews &amp; appearances"
+          title={
+            <>
+              Interviews &amp; <Accent>appearances</Accent>
+            </>
+          }
           lede="Every item below links to the original publication."
         />
 
@@ -172,14 +187,25 @@ function Coverage() {
 
 function PressKit() {
   return (
-    <Section tone="ink">
-      <Container>
+    <Section tone="ink" className="relative overflow-hidden">
+      <GhostWord
+        tone="light"
+        className="bottom-[-0.2em] left-[-0.04em] text-[clamp(6rem,13vw,12rem)]"
+      >
+        Booking
+      </GhostWord>
+
+      <Container className="relative">
         <div className="grid gap-14 lg:grid-cols-[1fr_0.8fr] lg:gap-20">
           <div>
             <SectionHead
               eyebrow="For producers &amp; editors"
               tone="light"
-              title="Booking &amp; press kit"
+              title={
+                <>
+                  Booking &amp; <Accent>press kit</Accent>
+                </>
+              }
               lede="Available for commentary on personal injury and civil rights litigation, trial practice, and access to the legal system."
             />
 

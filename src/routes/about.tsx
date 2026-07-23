@@ -3,7 +3,14 @@ import { ArrowRight } from "lucide-react";
 
 import { Photo } from "@/components/photo";
 import { canonical } from "@/lib/urls";
-import { Container, PullQuote, Section, SectionHead } from "@/components/primitives";
+import {
+  Accent,
+  Container,
+  GhostWord,
+  PullQuote,
+  Section,
+  SectionHead,
+} from "@/components/primitives";
 import {
   barAdmissions,
   bio,
@@ -99,8 +106,12 @@ function AboutHero() {
 
 function Biography() {
   return (
-    <Section>
-      <Container>
+    <Section className="relative overflow-hidden">
+      <GhostWord className="top-[-0.16em] right-[-0.05em] text-[clamp(6rem,13vw,12rem)]">
+        Story
+      </GhostWord>
+
+      <Container className="relative">
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <SectionHead
@@ -108,7 +119,7 @@ function Biography() {
               title={
                 <>
                   From Butler County
-                  <br /> to the courtroom.
+                  <br /> to the <Accent>courtroom.</Accent>
                 </>
               }
             />
@@ -142,7 +153,11 @@ function ValueSet() {
           <div>
             <SectionHead
               eyebrow="What he stands on"
-              title="Four commitments"
+              title={
+                <>
+                  Four <Accent>commitments</Accent>
+                </>
+              }
               lede="In his own words, from a 2026 interview with The Recap Report."
             />
 
@@ -184,11 +199,23 @@ function ValueSet() {
  */
 function Legacy() {
   return (
-    <Section>
-      <Container>
+    <Section className="relative overflow-hidden">
+      <GhostWord className="bottom-[-0.2em] left-[-0.04em] text-[clamp(6rem,13vw,12rem)]">
+        Legacy
+      </GhostWord>
+
+      <Container className="relative">
         <div className="grid gap-14 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
           <div>
-            <SectionHead eyebrow={legacy.eyebrow} title={legacy.title} lede={legacy.lede} />
+            <SectionHead
+              eyebrow={legacy.eyebrow}
+              title={
+                <>
+                  Getting more people into <Accent>the room.</Accent>
+                </>
+              }
+              lede={legacy.lede}
+            />
 
             <ul className="mt-12 space-y-5">
               {legacy.points.map((point) => (
@@ -249,9 +276,20 @@ function CredentialTable() {
   ];
 
   return (
-    <Section>
-      <Container>
-        <SectionHead eyebrow="Credentials" title="On the record" />
+    <Section className="relative overflow-hidden">
+      <GhostWord className="top-[-0.16em] right-[-0.05em] text-[clamp(6rem,14vw,13rem)]">
+        Record
+      </GhostWord>
+
+      <Container className="relative">
+        <SectionHead
+          eyebrow="Credentials"
+          title={
+            <>
+              On the <Accent>record</Accent>
+            </>
+          }
+        />
 
         <div className="mt-12 space-y-12">
           {groups.map((group) => (
@@ -290,7 +328,11 @@ function AboutCta() {
         <div className="flex flex-wrap items-end justify-between gap-10">
           <SectionHead
             eyebrow="Next"
-            title="Have a case you want looked at?"
+            title={
+              <>
+                Have a case you want <Accent>looked at?</Accent>
+              </>
+            }
             lede="Consultations are free and confidential."
           />
           <Link to="/contact" className="btn btn-brand">

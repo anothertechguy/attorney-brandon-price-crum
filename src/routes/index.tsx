@@ -3,7 +3,14 @@ import { ArrowRight, ArrowUpRight, Award } from "lucide-react";
 
 import { Photo } from "@/components/photo";
 import { canonical } from "@/lib/urls";
-import { Container, PullQuote, Section, SectionHead } from "@/components/primitives";
+import {
+  Accent,
+  Container,
+  GhostWord,
+  PullQuote,
+  Section,
+  SectionHead,
+} from "@/components/primitives";
 import {
   contact,
   credentials,
@@ -179,8 +186,12 @@ function CredentialMarquee() {
  */
 function Introduction() {
   return (
-    <Section>
-      <Container>
+    <Section className="relative overflow-hidden">
+      <GhostWord className="top-[-0.16em] right-[-0.05em] text-[clamp(6rem,13vw,12rem)]">
+        Approach
+      </GhostWord>
+
+      <Container className="relative">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <div className="photo-stage">
             <div className="frame aspect-[3/2]">
@@ -195,7 +206,7 @@ function Introduction() {
                 <>
                   Prepared early.
                   <br />
-                  Explained plainly.
+                  Explained <Accent>plainly.</Accent>
                 </>
               }
               lede="Most people meet a personal injury lawyer once, on the worst week of their life. That is the standard the work is held to — a case built carefully from the start, and a client who always knows exactly where it stands."
@@ -265,7 +276,11 @@ function PracticeGrid() {
       <Container className="relative">
         <SectionHead
           eyebrow="Practice"
-          title="Where he can help"
+          title={
+            <>
+              Where he can <Accent>help</Accent>
+            </>
+          }
           lede="Matters handled through Serious Injury Law Group across Alabama and Georgia."
         />
 
@@ -323,13 +338,24 @@ function PressBar() {
 
 function FeaturedMedia() {
   return (
-    <Section tone="ink">
-      <Container>
+    <Section tone="ink" className="relative overflow-hidden">
+      <GhostWord
+        tone="light"
+        className="top-[-0.14em] right-[-0.04em] text-[clamp(6rem,13vw,12rem)]"
+      >
+        Press
+      </GhostWord>
+
+      <Container className="relative">
         <div className="flex flex-wrap items-end justify-between gap-8">
           <SectionHead
             eyebrow="In the press"
             tone="light"
-            title="On the record"
+            title={
+              <>
+                On the <Accent>record</Accent>
+              </>
+            }
             lede="Selected coverage and interviews."
           />
           <Link to="/media" className="btn btn-on-dark">
@@ -377,13 +403,21 @@ function FeaturedMedia() {
 
 function ClosingCta() {
   return (
-    <Section tone="paper" className="border-t border-line">
-      <Container>
+    <Section tone="paper" className="relative overflow-hidden border-t border-line">
+      <GhostWord className="bottom-[-0.2em] left-[-0.04em] text-[clamp(6rem,14vw,13rem)]">
+        Contact
+      </GhostWord>
+
+      <Container className="relative">
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_0.85fr] lg:gap-20">
           <div>
             <SectionHead
               eyebrow="Talk to Brandon"
-              title="Tell him what happened."
+              title={
+                <>
+                  Tell him what <Accent>happened.</Accent>
+                </>
+              }
               lede="Consultations are free and confidential. If it isn't a matter he can take, he'll say so directly and point you somewhere that can help."
             />
             <div className="mt-10 flex flex-wrap items-center gap-3">

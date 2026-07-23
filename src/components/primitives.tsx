@@ -38,6 +38,42 @@ export function Section({
   );
 }
 
+/**
+ * Highlights a word or phrase inside a heading in the brand colour.
+ *
+ * Carries a data attribute rather than a colour class so the surrounding
+ * heading can retarget it — brand blue is too dark to sit on the navy sections,
+ * where it needs the brighter step instead.
+ */
+export function Accent({ children }: { children: ReactNode }) {
+  return <span data-accent>{children}</span>;
+}
+
+/**
+ * Oversized wordmark parked behind a section as texture. Absolutely positioned
+ * and always aria-hidden — it is atmosphere, not content, and the host section
+ * needs `relative overflow-hidden` so it cannot widen the page.
+ */
+export function GhostWord({
+  children,
+  tone = "dark",
+  className,
+}: {
+  children: ReactNode;
+  /** "light" for navy sections, where the brand blue disappears. */
+  tone?: "dark" | "light";
+  className?: string;
+}) {
+  return (
+    <span
+      aria-hidden
+      className={cn(tone === "light" ? "ghost-word-light" : "ghost-word", className)}
+    >
+      {children}
+    </span>
+  );
+}
+
 /** Eyebrow + display heading + optional supporting paragraph. */
 export function SectionHead({
   eyebrow,
@@ -64,7 +100,9 @@ export function SectionHead({
       <h2
         className={cn(
           "display mt-4 text-[clamp(1.875rem,3.4vw,2.75rem)]",
-          tone === "light" ? "text-white" : "text-ink",
+          tone === "light"
+            ? "text-white [&_[data-accent]]:text-brand-bright"
+            : "text-ink [&_[data-accent]]:text-brand",
         )}
       >
         {title}

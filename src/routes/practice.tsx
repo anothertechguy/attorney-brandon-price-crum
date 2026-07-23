@@ -3,7 +3,14 @@ import { ArrowRight } from "lucide-react";
 
 import { Photo } from "@/components/photo";
 import { canonical } from "@/lib/urls";
-import { Container, PullQuote, Section, SectionHead } from "@/components/primitives";
+import {
+  Accent,
+  Container,
+  GhostWord,
+  PullQuote,
+  Section,
+  SectionHead,
+} from "@/components/primitives";
 import { accessPoints, contact, practiceAreas, quotes, site } from "@/content/site";
 
 const title = `Practice Areas — ${site.formalName}`;
@@ -98,8 +105,12 @@ function PracticeHero() {
 
 function AreaList() {
   return (
-    <Section>
-      <Container>
+    <Section className="relative overflow-hidden">
+      <GhostWord className="top-[-0.18em] right-[-0.05em] text-[clamp(6rem,14vw,13rem)]">
+        Cases
+      </GhostWord>
+
+      <Container className="relative">
         <div className="border-t border-line">
           {practiceAreas.map((area, i) => (
             <div
@@ -126,14 +137,25 @@ function AreaList() {
 
 function Process() {
   return (
-    <Section tone="ink">
-      <Container>
+    <Section tone="ink" className="relative overflow-hidden">
+      <GhostWord
+        tone="light"
+        className="top-[-0.16em] right-[-0.04em] text-[clamp(6rem,13vw,12rem)]"
+      >
+        Process
+      </GhostWord>
+
+      <Container className="relative">
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <SectionHead
               eyebrow="How a case moves"
               tone="light"
-              title="What to expect"
+              title={
+                <>
+                  What to <Accent>expect</Accent>
+                </>
+              }
               lede="No two matters are alike, but the shape of the work is consistent."
             />
             <PullQuote quote={quotes.commitment} tone="light" className="mt-12" />
@@ -160,7 +182,11 @@ function FeeNote() {
       <Container>
         <SectionHead
           eyebrow="Fees & access"
-          title="What it costs to be heard."
+          title={
+            <>
+              What it costs to be <Accent>heard.</Accent>
+            </>
+          }
           lede="The practical barriers matter as much as the legal ones. These are the things that decide whether someone can bring a claim at all."
         />
 
@@ -192,7 +218,11 @@ function PracticeCta() {
         <div className="flex flex-wrap items-end justify-between gap-10">
           <SectionHead
             eyebrow="Talk it through"
-            title="Not sure whether you have a case?"
+            title={
+              <>
+                Not sure whether you have <Accent>a case?</Accent>
+              </>
+            }
             lede="That is exactly what the first conversation is for."
           />
           <div className="flex flex-wrap gap-3">

@@ -4,7 +4,7 @@ import { AlertCircle, ArrowRight, Check, Mail, MapPin, Phone } from "lucide-reac
 
 import { Photo } from "@/components/photo";
 import { canonical } from "@/lib/urls";
-import { Container, Section, SectionHead } from "@/components/primitives";
+import { Accent, Container, GhostWord, Section, SectionHead } from "@/components/primitives";
 import { FIELD_ORDER, submitInquiry, validateInquiry, type InquiryErrors } from "@/lib/contact";
 import { contact, site, socials } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -39,7 +39,11 @@ function ContactPage() {
           aria-hidden
           className="absolute inset-x-0 top-0 -z-10 h-[60%] bg-gradient-to-b from-tint-2 to-background"
         />
-        <Container>
+        <GhostWord className="bottom-[-0.18em] left-[-0.04em] text-[clamp(6rem,13vw,12rem)]">
+          Contact
+        </GhostWord>
+
+        <Container className="relative">
           <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <div className="animate-rise">
               <p className="eyebrow">Contact</p>
@@ -227,7 +231,14 @@ function InquiryForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="card self-start p-8 lg:p-12">
-      <SectionHead eyebrow="Request a consultation" title="Start here" />
+      <SectionHead
+        eyebrow="Request a consultation"
+        title={
+          <>
+            Start <Accent>here</Accent>
+          </>
+        }
+      />
 
       {status.kind === "error" && (
         <p

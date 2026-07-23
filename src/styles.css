@@ -441,7 +441,22 @@
   line-height: 0.8;
   letter-spacing: -0.05em;
   color: var(--color-brand);
-  opacity: 0.045;
+  opacity: 0.055;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/** Same, for navy sections — brand blue all but vanishes against the ink. */
+@utility ghost-word-light {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: white;
+  opacity: 0.04;
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
